@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Stone Bridge Cargo — International Freight Forwarding</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0E2340;
+      --navy-2: #1B365D;
+      --naranja: #EE6A22;
+      --naranja-hover: #D95A14;
+      --arena: #F5F3EF;
+      --tinta: #0F1B2D;
+      --gris: #5B6778;
+      --linea: rgba(14, 35, 64, 0.12);
+      --blanco: #FFFFFF;
+      --verde: #25A45A;
+      --radio: 12px;
+      --sombra: 0 10px 30px rgba(14, 35, 64, 0.10);
+      --ancho: 1180px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    [hidden] { display: none !important; }
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif; color: var(--tinta); background: var(--blanco); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    button, input, select, textarea { font: inherit; color: inherit; }
+    button { cursor: pointer; border: none; background: none; }
+    img { display: block; max-width: 100%; }
+    .caja { max-width: var(--ancho); margin: 0 auto; padding: 0 24px; }
+    .icono { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+    /* ── Aviso de prototipo ── */
+    .aviso-prototipo { background: #FFF4E5; color: #8A4B0B; font-size: 12.5px; font-weight: 600; text-align: center; padding: 7px 16px; }
+
+    /* ── Barra superior ── */
+    .franja { background: var(--navy); color: rgba(255,255,255,0.82); font-size: 13px; }
+    .franja .caja { display: flex; align-items: center; gap: 22px; height: 40px; }
+    .franja a { text-decoration: none; display: inline-flex; align-items: center; gap: 7px; }
+    .franja a:hover { color: var(--blanco); }
+    .franja .icono { width: 15px; height: 15px; }
+    .franja-lugar { margin-right: auto; display: inline-flex; align-items: center; gap: 7px; }
+
+    .idioma { display: inline-flex; background: rgba(255,255,255,0.12); border-radius: 999px; padding: 3px; }
+    .idioma button { color: rgba(255,255,255,0.8); font-size: 12px; font-weight: 700; letter-spacing: 0.04em; padding: 4px 12px; border-radius: 999px; transition: background .2s, color .2s; }
+    .idioma button[aria-pressed="true"] { background: var(--blanco); color: var(--navy); }
+    .idioma--claro { background: var(--arena); border: 1px solid var(--linea); }
+    .idioma--claro button { color: var(--gris); }
+    .idioma--claro button[aria-pressed="true"] { background: var(--navy); color: var(--blanco); }
+
+    /* ── Cabecera ── */
+    .cabecera { position: sticky; top: 0; z-index: 30; background: rgba(255,255,255,0.96); backdrop-filter: blur(8px); border-bottom: 1px solid var(--linea); }
+    .cabecera .caja { display: flex; align-items: center; gap: 28px; height: 74px; }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; margin-right: auto; }
+    .logo-icono { height: 38px; width: auto; }
+    .logo-texto { height: 26px; width: auto; }
+    .menu { display: flex; gap: 26px; }
+    .menu a { text-decoration: none; font-size: 14.5px; font-weight: 500; color: var(--gris); }
+    .menu a:hover { color: var(--navy); }
+    .boton { display: inline-flex; align-items: center; justify-content: center; gap: 9px; border-radius: 10px; font-weight: 700; font-size: 15px; padding: 13px 22px; text-decoration: none; transition: background .2s, transform .15s; white-space: nowrap; }
+    .boton:active { transform: translateY(1px); }
+    .boton--naranja { background: var(--naranja); color: var(--blanco); }
+    .boton--naranja:hover { background: var(--naranja-hover); }
+    .boton--borde { border: 1.5px solid rgba(255,255,255,0.55); color: var(--blanco); }
+    .boton--borde:hover { background: rgba(255,255,255,0.1); }
+    .boton--navy { background: var(--navy); color: var(--blanco); }
+    .boton--navy:hover { background: var(--navy-2); }
+    .boton--chico { padding: 10px 18px; font-size: 14px; }
+    .menu-movil { display: none; }
+    .menu-movil .icono { width: 26px; height: 26px; }
+
+    /* ── Portada ── */
+    .portada { position: relative; color: var(--blanco); background: var(--navy) url('img/hero-contenedores.webp') center / cover no-repeat; }
+    .portada::before { content: ''; position: absolute; inset: 0; background: linear-gradient(100deg, rgba(14,35,64,0.96) 0%, rgba(14,35,64,0.86) 45%, rgba(14,35,64,0.45) 100%); }
+    .portada .caja { position: relative; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; align-items: center; padding-top: 76px; padding-bottom: 76px; }
+    .antetitulo { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--naranja); }
+    .portada h1 { font-size: clamp(36px, 4.6vw, 58px); line-height: 1.06; font-weight: 800; letter-spacing: -0.02em; margin: 16px 0 20px; }
+    .portada h1 span { color: #FFB27F; }
+    .portada-bajada { font-size: 18px; color: rgba(255,255,255,0.82); max-width: 560px; }
+    .portada-botones { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+
+    .rapida { background: var(--blanco); color: var(--tinta); border-radius: 16px; padding: 26px; box-shadow: 0 24px 60px rgba(0,0,0,0.28); }
+    .rapida h2 { font-size: 20px; font-weight: 800; }
+    .rapida-modos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 16px 0 14px; }
+    .rapida-modos button { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px 6px; border: 1.5px solid var(--linea); border-radius: 10px; font-size: 13.5px; font-weight: 600; color: var(--gris); transition: border-color .15s, color .15s, background .15s; }
+    .rapida-modos button[aria-pressed="true"] { border-color: var(--naranja); color: var(--navy); background: #FFF6F0; }
+    .rapida label { display: block; font-size: 12.5px; font-weight: 600; color: var(--gris); margin: 10px 0 5px; }
+    .campo { width: 100%; border: 1.5px solid var(--linea); border-radius: 10px; padding: 12px 14px; font-size: 15px; background: var(--blanco); transition: border-color .15s; }
+    .campo:focus { outline: none; border-color: var(--navy-2); box-shadow: 0 0 0 3px rgba(27,54,93,0.12); }
+    .campo.error { border-color: #D2432B; }
+    .rapida .boton { width: 100%; margin-top: 18px; }
+    .rapida-pie { text-align: center; font-size: 12.5px; color: var(--gris); margin-top: 10px; }
+
+    .confianza { background: var(--navy-2); color: rgba(255,255,255,0.9); }
+    .confianza .caja { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding-top: 20px; padding-bottom: 20px; }
+    .confianza div { display: flex; align-items: center; gap: 11px; font-size: 14.5px; font-weight: 600; }
+    .confianza .icono { color: #FFB27F; }
+
+    /* ── Secciones ── */
+    .seccion { padding: 88px 0; }
+    .seccion--arena { background: var(--arena); }
+    .seccion-cabecera { max-width: 720px; margin-bottom: 44px; }
+    .seccion-cabecera h2 { font-size: clamp(28px, 3.2vw, 40px); line-height: 1.15; font-weight: 800; letter-spacing: -0.015em; margin-top: 10px; }
+    .seccion-cabecera p { font-size: 17px; color: var(--gris); margin-top: 14px; }
+
+    .servicios { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .servicio { background: var(--blanco); border: 1px solid var(--linea); border-radius: var(--radio); padding: 28px; display: flex; flex-direction: column; transition: box-shadow .2s, transform .2s; }
+    .servicio:hover { box-shadow: var(--sombra); transform: translateY(-2px); }
+    .servicio-icono { width: 52px; height: 52px; border-radius: 12px; background: #EAF0F8; color: var(--navy-2); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+    .servicio-icono .icono { width: 28px; height: 28px; }
+    .servicio h3 { font-size: 19px; font-weight: 700; }
+    .servicio p { color: var(--gris); font-size: 15px; margin: 8px 0 18px; }
+    .servicio a { margin-top: auto; font-weight: 700; font-size: 14.5px; color: var(--naranja); text-decoration: none; }
+    .servicio a:hover { text-decoration: underline; }
+
+    .industrias { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+    .industria { background: var(--blanco); border: 1px solid var(--linea); border-radius: var(--radio); padding: 22px 18px; text-align: center; font-weight: 600; font-size: 15px; }
+    .industria .icono { width: 34px; height: 34px; color: var(--navy-2); margin: 0 auto 12px; }
+
+    .puente { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    .puente img { border-radius: 16px; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+    .puente .seccion-cabecera { margin-bottom: 22px; }
+    .puntos { list-style: none; display: grid; gap: 14px; }
+    .puntos li { display: flex; gap: 12px; font-size: 16px; }
+    .puntos .icono { color: var(--verde); margin-top: 2px; }
+
+    .pasos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; counter-reset: paso; }
+    .paso { background: var(--blanco); border-radius: var(--radio); padding: 28px; border: 1px solid var(--linea); }
+    .paso-numero { font-size: 14px; font-weight: 800; color: var(--naranja); letter-spacing: 0.08em; }
+    .paso h3 { font-size: 19px; font-weight: 700; margin: 8px 0; }
+    .paso p { color: var(--gris); font-size: 15px; }
+
+    /* ── Cotizador ── */
+    .cotizar { display: grid; grid-template-columns: 1fr 340px; gap: 28px; align-items: start; }
+    .formulario { background: var(--blanco); border: 1px solid var(--linea); border-radius: 16px; padding: 32px; box-shadow: var(--sombra); }
+    .progreso { display: flex; gap: 10px; margin-bottom: 28px; }
+    .progreso li { list-style: none; flex: 1; font-size: 13px; font-weight: 700; color: var(--gris); padding-top: 10px; border-top: 4px solid var(--linea); transition: border-color .2s, color .2s; }
+    .progreso li.hecho { border-top-color: var(--naranja); color: var(--navy); }
+    .etapa { border: none; min-width: 0; }
+    .formulario h3 { font-size: 20px; font-weight: 800; margin-bottom: 18px; }
+    .grupo { margin-bottom: 18px; }
+    .grupo > label, .grupo > .etiqueta-grupo { display: block; font-size: 13.5px; font-weight: 600; margin-bottom: 7px; }
+    .fila-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .fila-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .opciones { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .opcion { position: relative; }
+    .opcion input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+    .opcion > span { display: flex; align-items: center; gap: 10px; border: 1.5px solid var(--linea); border-radius: 10px; padding: 12px 14px; font-size: 14px; font-weight: 600; min-height: 56px; transition: border-color .15s, background .15s; }
+    .opcion input:checked + span { border-color: var(--naranja); background: #FFF6F0; }
+    .opcion input:focus-visible + span { box-shadow: 0 0 0 3px rgba(238,106,34,0.25); }
+    .opcion .icono { color: var(--navy-2); }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chips .opcion > span { min-height: 0; padding: 9px 14px; border-radius: 999px; }
+    .check { display: flex; align-items: center; gap: 10px; font-size: 14.5px; font-weight: 500; cursor: pointer; }
+    .check input { width: 18px; height: 18px; accent-color: var(--naranja); }
+    .mensaje-error { color: #C0392B; font-size: 12.5px; font-weight: 600; margin-top: 6px; }
+    .acciones { display: flex; justify-content: space-between; gap: 12px; margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--linea); }
+    .boton--gris { background: var(--arena); color: var(--navy); }
+    .exito { text-align: center; padding: 16px 0 4px; }
+    .exito-icono { width: 64px; height: 64px; border-radius: 50%; background: #E7F6EE; color: var(--verde); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+    .exito-icono .icono { width: 34px; height: 34px; stroke-width: 2.4; }
+    .exito h3 { margin-bottom: 8px; }
+    .exito > p { color: var(--gris); }
+    .correo-demo { text-align: left; margin-top: 24px; border: 1px dashed #E9A36F; border-radius: 12px; background: #FFFAF5; padding: 18px; }
+    .correo-demo strong { display: block; font-size: 13px; color: #8A4B0B; margin-bottom: 10px; }
+    .correo-demo pre { white-space: pre-wrap; font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 13px; line-height: 1.6; color: var(--tinta); }
+    .exito .boton { margin-top: 20px; }
+
+    .conversar { background: var(--navy); color: var(--blanco); border-radius: 16px; padding: 28px; position: sticky; top: 96px; }
+    .conversar h3 { font-size: 19px; font-weight: 800; }
+    .conversar > p { color: rgba(255,255,255,0.75); font-size: 14.5px; margin: 8px 0 20px; }
+    .conversar .boton { width: 100%; margin-bottom: 10px; justify-content: flex-start; }
+    .boton--whatsapp { background: #1FAF55; color: var(--blanco); }
+    .boton--whatsapp:hover { background: #17964A; }
+    .boton--transparente { background: rgba(255,255,255,0.08); color: var(--blanco); }
+    .boton--transparente:hover { background: rgba(255,255,255,0.14); }
+
+    /* ── Pie ── */
+    .pie { background: #0A1A30; color: rgba(255,255,255,0.72); padding: 64px 0 28px; font-size: 14.5px; }
+    .pie-grilla { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; }
+    .pie .logo-icono, .pie .logo-texto { filter: invert(1) brightness(1.6); }
+    .pie-descripcion { margin-top: 16px; max-width: 380px; }
+    .pie h4 { color: var(--blanco); font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px; }
+    .pie ul { list-style: none; display: grid; gap: 9px; }
+    .pie a { text-decoration: none; }
+    .pie a:hover { color: var(--blanco); }
+    .pie-contacto li { display: flex; gap: 10px; }
+    .pie-contacto .icono { width: 18px; height: 18px; color: #FFB27F; margin-top: 2px; }
+    .pie-legal { display: flex; justify-content: space-between; align-items: center; gap: 16px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 44px; padding-top: 22px; font-size: 13px; }
+
+    /* ── WhatsApp flotante y barra móvil ── */
+    .flotante { position: fixed; right: 24px; bottom: 24px; z-index: 40; width: 58px; height: 58px; border-radius: 50%; background: #1FAF55; color: var(--blanco); display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 26px rgba(0,0,0,0.25); }
+    .flotante .icono { width: 30px; height: 30px; }
+    .barra-movil { display: none; }
+
+    .modal { border: none; border-radius: 16px; padding: 28px; max-width: 420px; width: calc(100% - 32px); margin: auto; box-shadow: 0 30px 80px rgba(0,0,0,0.35); }
+    .modal::backdrop { background: rgba(10,26,48,0.6); }
+    .modal h3 { font-size: 19px; font-weight: 800; }
+    .modal p { color: var(--gris); font-size: 14.5px; margin: 8px 0 16px; }
+    .burbuja { background: #DCF8C6; border-radius: 12px 12px 12px 2px; padding: 12px 14px; font-size: 14.5px; }
+    .modal-nota { font-size: 12.5px !important; margin-top: 12px !important; }
+    .modal .boton { margin-top: 8px; width: 100%; }
+
+    @media (max-width: 980px) {
+      .menu { display: none; }
+      .menu-movil { display: inline-flex; }
+      .menu.abierto { display: flex; flex-direction: column; gap: 0; position: absolute; top: 74px; left: 0; right: 0; background: var(--blanco); border-bottom: 1px solid var(--linea); padding: 8px 24px 16px; }
+      .menu.abierto a { padding: 12px 0; border-bottom: 1px solid var(--linea); }
+      .cabecera .boton--naranja { display: none; }
+      .portada .caja { grid-template-columns: 1fr; gap: 36px; padding-top: 48px; padding-bottom: 48px; }
+      .confianza .caja { grid-template-columns: 1fr 1fr; }
+      .servicios, .pasos { grid-template-columns: 1fr 1fr; }
+      .industrias { grid-template-columns: repeat(3, 1fr); }
+      .puente, .cotizar { grid-template-columns: 1fr; }
+      .conversar { position: static; }
+      .pie-grilla { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .caja { padding: 0 18px; }
+      .franja .franja-lugar, .franja .franja-correo { display: none; }
+      .franja .caja { justify-content: space-between; }
+      .cabecera .caja { height: 64px; gap: 14px; }
+      .menu.abierto { top: 64px; }
+      .logo-icono { height: 30px; }
+      .logo-texto { height: 20px; }
+      .portada-bajada { font-size: 16px; }
+      .seccion { padding: 60px 0; }
+      .servicios, .pasos, .industrias, .fila-2, .fila-3, .opciones, .pie-grilla { grid-template-columns: 1fr; }
+      .confianza .caja { gap: 14px; }
+      .confianza div { font-size: 13px; }
+      .formulario { padding: 22px 18px; }
+      .flotante { display: none; }
+      .barra-movil { display: grid; grid-template-columns: repeat(3, 1fr); position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; background: var(--blanco); border-top: 1px solid var(--linea); box-shadow: 0 -6px 20px rgba(0,0,0,0.08); }
+      .barra-movil a, .barra-movil button { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 9px 0 11px; font-size: 12px; font-weight: 700; text-decoration: none; color: var(--navy); }
+      .barra-movil .destacado { background: var(--naranja); color: var(--blanco); }
+      .barra-movil .wa { color: #17964A; }
+      body { padding-bottom: 64px; }
+      .pie-legal { flex-direction: column; align-items: flex-start; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-barco" viewBox="0 0 24 24"><path d="M3 17l1.5 3.5h15L21 17"/><path d="M4 17h16l-2-5H6z"/><path d="M8 12V7h8v5"/><path d="M11 7V4h2v3"/></symbol>
+    <symbol id="i-avion" viewBox="0 0 24 24"><path d="M10.5 13.5L3 11l1.5-1.5 8 .5 4-4.5a2 2 0 013 3l-4.5 4 .5 8L14 22l-2.5-7.5z"/></symbol>
+    <symbol id="i-camion" viewBox="0 0 24 24"><path d="M2 6h11v10H2z"/><path d="M13 9h4l4 4v3h-8"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></symbol>
+    <symbol id="i-almacen" viewBox="0 0 24 24"><path d="M3 9l9-5 9 5v11H3z"/><path d="M7 20v-7h10v7"/><path d="M7 16h10"/></symbol>
+    <symbol id="i-aduana" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5"/><path d="M9 13h7M9 17h5"/></symbol>
+    <symbol id="i-grua" viewBox="0 0 24 24"><path d="M5 21V4h2v17"/><path d="M7 5h13"/><path d="M17 5v6"/><path d="M15 11h4v4h-4z"/><path d="M3 21h8"/><path d="M7 5L12 3"/></symbol>
+    <symbol id="i-chip" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="1"/><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"/></symbol>
+    <symbol id="i-salud" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 8v8M8 12h8"/></symbol>
+    <symbol id="i-engranaje" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></symbol>
+    <symbol id="i-bolsa" viewBox="0 0 24 24"><path d="M5 8h14l-1 13H6z"/><path d="M9 8V6a3 3 0 016 0v2"/></symbol>
+    <symbol id="i-fabrica" viewBox="0 0 24 24"><path d="M3 21V10l6 4v-4l6 4V5h6v16z"/><path d="M7 17h2M12 17h2M17 17h2"/></symbol>
+    <symbol id="i-reloj" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-ruta" viewBox="0 0 24 24"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h8a3 3 0 000-6H8a3 3 0 010-6h8"/></symbol>
+    <symbol id="i-escudo" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.5 8-8 9-4.5-1-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-tel" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></symbol>
+    <symbol id="i-correo" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+    <symbol id="i-lugar" viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-12a7 7 0 00-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></symbol>
+    <symbol id="i-flecha" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-cotizar" viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></symbol>
+    <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M4 20l1.3-4A8 8 0 1112 20a8 8 0 01-4-1.1z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 1a4 4 0 01-2-2l1-1-1-2z"/></symbol>
+  </svg>
+
+  <div class="aviso-prototipo" data-t="aviso">Design prototype — the quote form does not send any data.</div>
+
+  <div class="franja">
+    <div class="caja">
+      <span class="franja-lugar"><svg class="icono"><use href="#i-lugar"/></svg> Aventura · Miami, FL</span>
+      <a href="tel:+17865197711"><svg class="icono"><use href="#i-tel"/></svg> +1 (786) 519-7711</a>
+      <a class="franja-correo" href="mailto:operations@sbc-log.com"><svg class="icono"><use href="#i-correo"/></svg> operations@sbc-log.com</a>
+      <div class="idioma" role="group" aria-label="Language / Idioma">
+        <button type="button" data-idioma="en" aria-pressed="true">EN</button>
+        <button type="button" data-idioma="es" aria-pressed="false">ES</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="cabecera">
+    <div class="caja">
+      <a class="logo" href="#inicio" aria-label="Stone Bridge Cargo">
+        <img class="logo-icono" src="img/logo-icono.png" alt="" />
+        <img class="logo-texto" src="img/logo-texto.png" alt="Stone Bridge Cargo — International Logistics" />
+      </a>
+      <nav class="menu" id="menu" aria-label="Main">
+        <a href="#servicios" data-t="nav.servicios">Services</a>
+        <a href="#industrias" data-t="nav.industrias">Industries</a>
+        <a href="#nosotros" data-t="nav.nosotros">About us</a>
+        <a href="#proceso" data-t="nav.proceso">How it works</a>
+        <a href="#contacto" data-t="nav.contacto">Contact</a>
+      </nav>
+      <a class="boton boton--naranja boton--chico" href="#cotizar" data-t="nav.cotizar">Get a quote</a>
+      <button class="menu-movil" type="button" aria-controls="menu" aria-expanded="false" data-t-aria="nav.abrir" aria-label="Open menu"><svg class="icono"><use href="#i-menu"/></svg></button>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="portada">
+      <div class="caja">
+        <div>
+          <div class="antetitulo" data-t="portada.antetitulo">International freight forwarding · Miami, FL</div>
+          <h1 data-t-html="portada.titulo">Your cargo, from origin to destination. <span>No surprises.</span></h1>
+          <p class="portada-bajada" data-t="portada.bajada">Ocean, air, road and heavy-lift freight, plus customs brokerage — one partner for the whole route. Tell us where your cargo goes and get a quote within 48 hours.</p>
+          <div class="portada-botones">
+            <a class="boton boton--naranja" href="#cotizar"><span data-t="portada.cta">Get a quote</span> <svg class="icono"><use href="#i-flecha"/></svg></a>
+            <button class="boton boton--borde abrir-whatsapp" type="button"><svg class="icono"><use href="#i-whatsapp"/></svg> <span data-t="portada.experto">Talk to an expert</span></button>
+          </div>
+        </div>
+
+        <form class="rapida" id="rapida" novalidate>
+          <h2 data-t="rapida.titulo">Quick quote</h2>
+          <div class="rapida-modos" role="group" data-t-aria="rapida.modo" aria-label="Transport mode">
+            <button type="button" data-modo="ocean_fcl" aria-pressed="true"><svg class="icono"><use href="#i-barco"/></svg><span data-t="modo.corto.ocean">Ocean</span></button>
+            <button type="button" data-modo="air" aria-pressed="false"><svg class="icono"><use href="#i-avion"/></svg><span data-t="modo.corto.air">Air</span></button>
+            <button type="button" data-modo="road" aria-pressed="false"><svg class="icono"><use href="#i-camion"/></svg><span data-t="modo.corto.road">Road</span></button>
+          </div>
+          <label for="rapida-origen" data-t="campo.origen">Origin</label>
+          <input class="campo" id="rapida-origen" data-t-ph="campo.ciudadPais" placeholder="City, country" autocomplete="off" />
+          <label for="rapida-destino" data-t="campo.destino">Destination</label>
+          <input class="campo" id="rapida-destino" data-t-ph="campo.ciudadPais" placeholder="City, country" autocomplete="off" />
+          <button class="boton boton--naranja" type="submit"><span data-t="rapida.continuar">Continue</span> <svg class="icono"><use href="#i-flecha"/></svg></button>
+          <p class="rapida-pie" data-t="rapida.pie">Response within 48 h · No commitment</p>
+        </form>
+      </div>
+    </section>
+
+    <div class="confianza">
+      <div class="caja">
+        <div><svg class="icono"><use href="#i-reloj"/></svg><span data-t="confianza.48">Quote within 48 hours</span></div>
+        <div><svg class="icono"><use href="#i-ruta"/></svg><span data-t="confianza.modos">Ocean · Air · Road · Rail</span></div>
+        <div><svg class="icono"><use href="#i-aduana"/></svg><span data-t="confianza.aduana">Customs brokerage</span></div>
+        <div><svg class="icono"><use href="#i-grua"/></svg><span data-t="confianza.pesada">Heavy &amp; oversized cargo</span></div>
+      </div>
+    </div>
+
+    <section class="seccion" id="servicios">
+      <div class="caja">
+        <div class="seccion-cabecera">
+          <div class="antetitulo" data-t="servicios.antetitulo">What we move</div>
+          <h2 data-t="servicios.titulo">Logistics services for every leg of the route</h2>
+          <p data-t="servicios.texto">End-to-end supply chain solutions tailored to your business, with global reach and local precision.</p>
+        </div>
+        <div class="servicios">
+          <article class="servicio">
+            <div class="servicio-icono"><svg class="icono"><use href="#i-barco"/></svg></div>
+            <h3 data-t="servicio.ocean.titulo">International Ocean Freight</h3>
+            <p data-t="servicio.ocean.texto">Comprehensive maritime logistics for large-scale global shipments via major shipping lanes.</p>
+            <a href="#cotizar" data-cotizar="ocean_fcl" data-t="servicio.cotizar">Quote this service →</a>
+          </article>
+          <article class="servicio">
+            <div class="servicio-icono"><svg class="icono"><use href="#i-avion"/></svg></div>
+            <h3 data-t="servicio.air.titulo">Global Air Cargo Solutions</h3>
+            <p data-t="servicio.air.texto">Expedited air transport for time-sensitive cargo requiring rapid international delivery.</p>
+            <a href="#cotizar" data-cotizar="air" data-t="servicio.cotizar">Quote this service →</a>
+          </article>
+          <article class="servicio">
+            <div class="servicio-icono"><svg class="icono"><use href="#i-camion"/></svg></div>
+            <h3 data-t="servicio.road.titulo">Road &amp; Rail Logistics</h3>
+            <p data-t="servicio.road.texto">Secure inland connectivity integrated with maritime hubs for seamless door-to-door transit.</p>
+            <a href="#cotizar" data-cotizar="road" data-t="servicio.cotizar">Quote this service →</a>
+          </article>
+          <article class="servicio">
+            <div class="servicio-icono"><svg class="icono"><use href="#i-almacen"/></svg></div>
+            <h3 data-t="servicio.almacen.titulo">Warehousing &amp; Distribution</h3>
+            <p data-t="servicio.almacen.texto">Advanced storage solutions and fulfillment services to optimize your local and global inventory.</p>
+            <a href="#cotizar" data-cotizar="road" data-t="servicio.cotizar">Quote this service →</a>
+          </article>
+          <article class="servicio">
+            <div class="servicio-icono"><svg class="icono"><use href="#i-aduana"/></svg></div>
+            <h3 data-t="servicio.aduana.titulo">Customs Brokerage</h3>
+            <p data-t="servicio.aduana.texto">Expert compliance management and documentation handling to clear international borders efficiently.</p>
+            <a href="#cotizar" data-cotizar="customs" data-t="servicio.cotizar">Quote this service →</a>
+          </article>
+          <article class="servicio">
+            <div class="servicio-icono"><svg class="icono"><use href="#i-grua"/></svg></div>
+            <h3 data-t="servicio.pesada.titulo">Heavy Lift</h3>
+            <p data-t="servicio.pesada.texto">Specialized transport for oversized and extremely heavy industrial cargo requiring custom technical engineering.</p>
+            <a href="#cotizar" data-cotizar="heavy" data-t="servicio.cotizar">Quote this service →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion seccion--arena" id="industrias">
+      <div class="caja">
+        <div class="seccion-cabecera">
+          <div class="antetitulo" data-t="industrias.antetitulo">Industries</div>
+          <h2 data-t="industrias.titulo">Logistics adapted to your sector</h2>
+          <p data-t="industrias.texto">From high-tech electronics to heavy industry, we adapt every solution to the demands of each sector: reliability, compliance and on-time delivery.</p>
+        </div>
+        <div class="industrias">
+          <div class="industria"><svg class="icono"><use href="#i-chip"/></svg><span data-t="industria.tecnologia">Technology &amp; Electronics</span></div>
+          <div class="industria"><svg class="icono"><use href="#i-salud"/></svg><span data-t="industria.farma">Pharmaceuticals &amp; Healthcare</span></div>
+          <div class="industria"><svg class="icono"><use href="#i-engranaje"/></svg><span data-t="industria.automotriz">Automotive &amp; Manufacturing</span></div>
+          <div class="industria"><svg class="icono"><use href="#i-bolsa"/></svg><span data-t="industria.retail">Retail &amp; Consumer Goods</span></div>
+          <div class="industria"><svg class="icono"><use href="#i-fabrica"/></svg><span data-t="industria.pesada">Industrial &amp; Heavy Cargo</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion" id="nosotros">
+      <div class="caja puente">
+        <img src="img/buque-atardecer.webp" alt="" loading="lazy" />
+        <div>
+          <div class="seccion-cabecera">
+            <div class="antetitulo" data-t="nosotros.antetitulo">About us</div>
+            <h2 data-t="nosotros.titulo">The bridge to your global market</h2>
+            <p data-t="nosotros.texto">Stone Bridge Cargo is an international freight forwarder specialized in precise supply chain management. We design efficient, reliable transport solutions for the complexities of each industry.</p>
+          </div>
+          <ul class="puntos">
+            <li><svg class="icono"><use href="#i-check"/></svg><span data-t="nosotros.p1">Ocean, air and inland freight coordinated as a single route.</span></li>
+            <li><svg class="icono"><use href="#i-check"/></svg><span data-t="nosotros.p2">Customs brokerage and documentation handled by our team.</span></li>
+            <li><svg class="icono"><use href="#i-check"/></svg><span data-t="nosotros.p3">Specialized engineering for heavy and oversized cargo.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion seccion--arena" id="proceso">
+      <div class="caja">
+        <div class="seccion-cabecera">
+          <div class="antetitulo" data-t="proceso.antetitulo">How it works</div>
+          <h2 data-t="proceso.titulo">From request to quote in three steps</h2>
+        </div>
+        <div class="pasos">
+          <div class="paso"><div class="paso-numero">01</div><h3 data-t="proceso.1.titulo">Send your details</h3><p data-t="proceso.1.texto">Route, cargo and transport mode in a guided two-minute form.</p></div>
+          <div class="paso"><div class="paso-numero">02</div><h3 data-t="proceso.2.titulo">Expert review</h3><p data-t="proceso.2.texto">Our specialists define the best routing for standard or heavy-lift cargo, with compliance in mind.</p></div>
+          <div class="paso"><div class="paso-numero">03</div><h3 data-t="proceso.3.titulo">Receive your quote</h3><p data-t="proceso.3.texto">A tailored quote in your inbox within 48 hours.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion" id="cotizar">
+      <div class="caja">
+        <div class="seccion-cabecera">
+          <div class="antetitulo" data-t="form.antetitulo">Request a quote</div>
+          <h2 data-t="form.titulo">Tell us about your shipment</h2>
+          <p data-t="form.texto">The more we know, the faster and more accurate your quote.</p>
+        </div>
+        <div class="cotizar">
+          <div class="formulario">
+            <ol class="progreso" aria-hidden="true">
+              <li class="hecho" data-t="form.paso1">1 · Route</li>
+              <li data-t="form.paso2">2 · Cargo</li>
+              <li data-t="form.paso3">3 · Contact</li>
+            </ol>
+
+            <form id="cotizador" novalidate>
+              <fieldset class="etapa" data-etapa="1">
+                <h3 data-t="form.ruta.titulo">Where is your cargo going?</h3>
+                <div class="grupo">
+                  <span class="etiqueta-grupo" data-t="campo.modalidad">Transport mode</span>
+                  <div class="opciones" id="modos">
+                    <label class="opcion"><input type="radio" name="modo" value="ocean_fcl" /><span><svg class="icono"><use href="#i-barco"/></svg><span data-t="modo.ocean_fcl">Ocean · Full container (FCL)</span></span></label>
+                    <label class="opcion"><input type="radio" name="modo" value="ocean_lcl" /><span><svg class="icono"><use href="#i-barco"/></svg><span data-t="modo.ocean_lcl">Ocean · Consolidated (LCL)</span></span></label>
+                    <label class="opcion"><input type="radio" name="modo" value="air" /><span><svg class="icono"><use href="#i-avion"/></svg><span data-t="modo.air">Air freight</span></span></label>
+                    <label class="opcion"><input type="radio" name="modo" value="road" /><span><svg class="icono"><use href="#i-camion"/></svg><span data-t="modo.road">Road &amp; rail</span></span></label>
+                    <label class="opcion"><input type="radio" name="modo" value="heavy" /><span><svg class="icono"><use href="#i-grua"/></svg><span data-t="modo.heavy">Heavy lift / project</span></span></label>
+                    <label class="opcion"><input type="radio" name="modo" value="customs" /><span><svg class="icono"><use href="#i-aduana"/></svg><span data-t="modo.customs">Customs brokerage only</span></span></label>
+                  </div>
+                  <p class="mensaje-error" data-error="modo" hidden data-t="error.modo">Choose a transport mode</p>
+                </div>
+                <div class="fila-2">
+                  <div class="grupo">
+                    <label for="origen" data-t="campo.origen">Origin</label>
+                    <input class="campo" id="origen" name="origen" required data-t-ph="campo.ciudadPais" placeholder="City, country" />
+                    <p class="mensaje-error" data-error="origen" hidden data-t="error.requerido">Required field</p>
+                  </div>
+                  <div class="grupo">
+                    <label for="destino" data-t="campo.destino">Destination</label>
+                    <input class="campo" id="destino" name="destino" required data-t-ph="campo.ciudadPais" placeholder="City, country" />
+                    <p class="mensaje-error" data-error="destino" hidden data-t="error.requerido">Required field</p>
+                  </div>
+                </div>
+                <div class="grupo" style="max-width: 320px;">
+                  <label for="fecha" data-t="campo.fecha">Cargo ready date</label>
+                  <input class="campo" id="fecha" name="fecha" type="date" />
+                </div>
+              </fieldset>
+
+              <fieldset class="etapa" data-etapa="2" hidden>
+                <h3 data-t="form.carga.titulo">What are you shipping?</h3>
+                <div class="grupo">
+                  <label for="mercancia" data-t="campo.mercancia">Commodity</label>
+                  <input class="campo" id="mercancia" name="mercancia" required data-t-ph="campo.mercanciaEj" placeholder="E.g. auto parts, electronics, machinery" />
+                  <p class="mensaje-error" data-error="mercancia" hidden data-t="error.requerido">Required field</p>
+                </div>
+                <div class="grupo">
+                  <span class="etiqueta-grupo" data-t="campo.tipo">Cargo type</span>
+                  <div class="chips">
+                    <label class="opcion"><input type="radio" name="tipo" value="general" checked /><span data-t="tipo.general">General</span></label>
+                    <label class="opcion"><input type="radio" name="tipo" value="dg" /><span data-t="tipo.dg">Dangerous goods</span></label>
+                    <label class="opcion"><input type="radio" name="tipo" value="temp" /><span data-t="tipo.temp">Temperature-controlled</span></label>
+                    <label class="opcion"><input type="radio" name="tipo" value="oversized" /><span data-t="tipo.oversized">Oversized</span></label>
+                  </div>
+                </div>
+                <div class="fila-2" id="grupo-fcl">
+                  <div class="grupo">
+                    <label for="contenedor" data-t="campo.contenedor">Container type</label>
+                    <select class="campo" id="contenedor" name="contenedor">
+                      <option value="20'">20' Standard</option>
+                      <option value="40'">40' Standard</option>
+                      <option value="40' HC">40' High Cube</option>
+                      <option value="40' Reefer">40' Reefer</option>
+                    </select>
+                  </div>
+                  <div class="grupo">
+                    <label for="cantidad" data-t="campo.cantidad">Number of containers</label>
+                    <input class="campo" id="cantidad" name="cantidad" type="number" min="1" value="1" />
+                  </div>
+                </div>
+                <div class="fila-3" id="grupo-bultos" hidden>
+                  <div class="grupo">
+                    <label for="bultos" data-t="campo.bultos">Pieces</label>
+                    <input class="campo" id="bultos" name="bultos" type="number" min="1" />
+                  </div>
+                  <div class="grupo">
+                    <label for="peso" data-t="campo.peso">Total weight (kg)</label>
+                    <input class="campo" id="peso" name="peso" type="number" min="0" />
+                  </div>
+                  <div class="grupo">
+                    <label for="volumen" data-t="campo.volumen">Volume (m³) or size</label>
+                    <input class="campo" id="volumen" name="volumen" data-t-ph="campo.volumenEj" placeholder="E.g. 12 m³ or 120×80×100 cm" />
+                  </div>
+                </div>
+                <div class="fila-2">
+                  <div class="grupo">
+                    <label for="incoterm">Incoterm</label>
+                    <select class="campo" id="incoterm" name="incoterm">
+                      <option value="EXW">EXW</option>
+                      <option value="FOB" selected>FOB</option>
+                      <option value="CIF">CIF</option>
+                      <option value="DAP">DAP</option>
+                      <option value="DDP">DDP</option>
+                      <option value="?" data-t="campo.noSeguro">Not sure</option>
+                    </select>
+                  </div>
+                  <div class="grupo" style="display:flex;align-items:flex-end;">
+                    <label class="check"><input type="checkbox" name="aduana" /><span data-t="campo.aduana">I also need customs clearance</span></label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset class="etapa" data-etapa="3" hidden>
+                <h3 data-t="form.contacto.titulo">Where should we send your quote?</h3>
+                <div class="fila-2">
+                  <div class="grupo">
+                    <label for="nombre" data-t="campo.nombre">Full name</label>
+                    <input class="campo" id="nombre" name="nombre" required autocomplete="name" />
+                    <p class="mensaje-error" data-error="nombre" hidden data-t="error.requerido">Required field</p>
+                  </div>
+                  <div class="grupo">
+                    <label for="empresa" data-t="campo.empresa">Company</label>
+                    <input class="campo" id="empresa" name="empresa" autocomplete="organization" />
+                  </div>
+                </div>
+                <div class="fila-2">
+                  <div class="grupo">
+                    <label for="correo" data-t="campo.correo">Email</label>
+                    <input class="campo" id="correo" name="correo" type="email" required autocomplete="email" />
+                    <p class="mensaje-error" data-error="correo" hidden data-t="error.correo">Enter a valid email</p>
+                  </div>
+                  <div class="grupo">
+                    <label for="telefono" data-t="campo.telefono">Phone / WhatsApp</label>
+                    <input class="campo" id="telefono" name="telefono" type="tel" autocomplete="tel" />
+                  </div>
+                </div>
+                <div class="grupo">
+                  <span class="etiqueta-grupo" data-t="campo.preferencia">How should we contact you?</span>
+                  <div class="chips">
+                    <label class="opcion"><input type="radio" name="preferencia" value="email" checked /><span data-t="pref.email">Email</span></label>
+                    <label class="opcion"><input type="radio" name="preferencia" value="whatsapp" /><span>WhatsApp</span></label>
+                    <label class="opcion"><input type="radio" name="preferencia" value="llamada" /><span data-t="pref.llamada">Phone call</span></label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <div class="acciones">
+                <button class="boton boton--gris" type="button" id="atras" hidden data-t="form.atras">Back</button>
+                <span></span>
+                <button class="boton boton--naranja" type="submit" id="siguiente"><span data-t="form.siguiente">Next</span> <svg class="icono"><use href="#i-flecha"/></svg></button>
+              </div>
+            </form>
+
+            <div class="exito" id="exito" hidden>
+              <div class="exito-icono"><svg class="icono"><use href="#i-check"/></svg></div>
+              <h3 id="exito-titulo"></h3>
+              <p data-t="exito.texto">Our operations team will send your quote within 48 hours.</p>
+              <div class="correo-demo">
+                <strong data-t="exito.demo">Prototype: this is exactly what would arrive at operations@sbc-log.com</strong>
+                <pre id="resumen"></pre>
+              </div>
+              <button class="boton boton--navy" type="button" id="otra" data-t="exito.otra">Start another quote</button>
+            </div>
+          </div>
+
+          <aside class="conversar">
+            <h3 data-t="conversar.titulo">Prefer to talk?</h3>
+            <p data-t="conversar.texto">Talk directly with our operations team.</p>
+            <button class="boton boton--whatsapp abrir-whatsapp" type="button"><svg class="icono"><use href="#i-whatsapp"/></svg> WhatsApp</button>
+            <a class="boton boton--transparente" href="tel:+17865197711"><svg class="icono"><use href="#i-tel"/></svg> +1 (786) 519-7711</a>
+            <a class="boton boton--transparente" href="mailto:operations@sbc-log.com"><svg class="icono"><use href="#i-correo"/></svg> operations@sbc-log.com</a>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie" id="contacto">
+    <div class="caja">
+      <div class="pie-grilla">
+        <div>
+          <a class="logo" href="#inicio" aria-label="Stone Bridge Cargo">
+            <img class="logo-icono" src="img/logo-icono.png" alt="" />
+            <img class="logo-texto" src="img/logo-texto.png" alt="Stone Bridge Cargo" />
+          </a>
+          <p class="pie-descripcion" data-t="pie.descripcion">International freight forwarding and supply chain management. Ocean, air, road, warehousing, customs and heavy lift.</p>
+        </div>
+        <div>
+          <h4 data-t="pie.servicios">Services</h4>
+          <ul>
+            <li><a href="#servicios" data-t="servicio.ocean.titulo">International Ocean Freight</a></li>
+            <li><a href="#servicios" data-t="servicio.air.titulo">Global Air Cargo Solutions</a></li>
+            <li><a href="#servicios" data-t="servicio.road.titulo">Road &amp; Rail Logistics</a></li>
+            <li><a href="#servicios" data-t="servicio.aduana.titulo">Customs Brokerage</a></li>
+            <li><a href="#servicios" data-t="servicio.pesada.titulo">Heavy Lift</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 data-t="pie.contacto">Contact</h4>
+          <ul class="pie-contacto">
+            <li><svg class="icono"><use href="#i-tel"/></svg><a href="tel:+17865197711">+1 (786) 519-7711</a></li>
+            <li><svg class="icono"><use href="#i-correo"/></svg><a href="mailto:operations@sbc-log.com">operations@sbc-log.com</a></li>
+            <li><svg class="icono"><use href="#i-lugar"/></svg><span data-t="pie.direccion">Biscayne Blvd., Aventura, FL 33181, United States</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pie-legal">
+        <span data-t="pie.legal">© 2026 Stone Bridge Cargo C.A. All rights reserved.</span>
+        <div class="idioma" role="group" aria-label="Language / Idioma">
+          <button type="button" data-idioma="en" aria-pressed="true">EN</button>
+          <button type="button" data-idioma="es" aria-pressed="false">ES</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="flotante abrir-whatsapp" type="button" aria-label="WhatsApp"><svg class="icono"><use href="#i-whatsapp"/></svg></button>
+
+  <nav class="barra-movil" aria-label="Quick actions">
+    <a class="destacado" href="#cotizar"><svg class="icono"><use href="#i-cotizar"/></svg><span data-t="movil.cotizar">Quote</span></a>
+    <button class="wa abrir-whatsapp" type="button"><svg class="icono"><use href="#i-whatsapp"/></svg>WhatsApp</button>
+    <a href="tel:+17865197711"><svg class="icono"><use href="#i-tel"/></svg><span data-t="movil.llamar">Call</span></a>
+  </nav>
+
+  <dialog class="modal" id="modal-whatsapp">
+    <h3 data-t="wa.titulo">WhatsApp chat</h3>
+    <p data-t="wa.texto">On the live site this button opens a WhatsApp chat with Stone Bridge Cargo, with the message already written:</p>
+    <div class="burbuja" data-t="wa.mensaje">Hello Stone Bridge Cargo, I'd like a freight quote.</div>
+    <p class="modal-nota" data-t="wa.nota">Prototype: WhatsApp number to be confirmed by SBC. Nothing is sent.</p>
+    <button class="boton boton--navy" type="button" id="cerrar-whatsapp" data-t="wa.cerrar">Close</button>
+  </dialog>
+
+  <script>
+  (function () {
+    var T = {
+      en: {
+        titulo: 'Stone Bridge Cargo — International Freight Forwarding',
+        aviso: 'Design prototype — the quote form does not send any data.',
+        'nav.servicios': 'Services', 'nav.industrias': 'Industries', 'nav.nosotros': 'About us', 'nav.proceso': 'How it works',
+        'nav.contacto': 'Contact', 'nav.cotizar': 'Get a quote', 'nav.abrir': 'Open menu',
+        'portada.antetitulo': 'International freight forwarding · Miami, FL',
+        'portada.titulo': 'Your cargo, from origin to destination. <span>No surprises.</span>',
+        'portada.bajada': 'Ocean, air, road and heavy-lift freight, plus customs brokerage — one partner for the whole route. Tell us where your cargo goes and get a quote within 48 hours.',
+        'portada.cta': 'Get a quote', 'portada.experto': 'Talk to an expert',
+        'rapida.titulo': 'Quick quote', 'rapida.modo': 'Transport mode', 'rapida.continuar': 'Continue', 'rapida.pie': 'Response within 48 h · No commitment',
+        'modo.corto.ocean': 'Ocean', 'modo.corto.air': 'Air', 'modo.corto.road': 'Road',
+        'confianza.48': 'Quote within 48 hours', 'confianza.modos': 'Ocean · Air · Road · Rail', 'confianza.aduana': 'Customs brokerage', 'confianza.pesada': 'Heavy & oversized cargo',
+        'servicios.antetitulo': 'What we move', 'servicios.titulo': 'Logistics services for every leg of the route',
+        'servicios.texto': 'End-to-end supply chain solutions tailored to your business, with global reach and local precision.',
+        'servicio.ocean.titulo': 'International Ocean Freight', 'servicio.ocean.texto': 'Comprehensive maritime logistics for large-scale global shipments via major shipping lanes.',
+        'servicio.air.titulo': 'Global Air Cargo Solutions', 'servicio.air.texto': 'Expedited air transport for time-sensitive cargo requiring rapid international delivery.',
+        'servicio.road.titulo': 'Road & Rail Logistics', 'servicio.road.texto': 'Secure inland connectivity integrated with maritime hubs for seamless door-to-door transit.',
+        'servicio.almacen.titulo': 'Warehousing & Distribution', 'servicio.almacen.texto': 'Advanced storage solutions and fulfillment services to optimize your local and global inventory.',
+        'servicio.aduana.titulo': 'Customs Brokerage', 'servicio.aduana.texto': 'Expert compliance management and documentation handling to clear international borders efficiently.',
+        'servicio.pesada.titulo': 'Heavy Lift', 'servicio.pesada.texto': 'Specialized transport for oversized and extremely heavy industrial cargo requiring custom technical engineering.',
+        'servicio.cotizar': 'Quote this service →',
+        'industrias.antetitulo': 'Industries', 'industrias.titulo': 'Logistics adapted to your sector',
+        'industrias.texto': 'From high-tech electronics to heavy industry, we adapt every solution to the demands of each sector: reliability, compliance and on-time delivery.',
+        'industria.tecnologia': 'Technology & Electronics', 'industria.farma': 'Pharmaceuticals & Healthcare', 'industria.automotriz': 'Automotive & Manufacturing',
+        'industria.retail': 'Retail & Consumer Goods', 'industria.pesada': 'Industrial & Heavy Cargo',
+        'nosotros.antetitulo': 'About us', 'nosotros.titulo': 'The bridge to your global market',
+        'nosotros.texto': 'Stone Bridge Cargo is an international freight forwarder specialized in precise supply chain management. We design efficient, reliable transport solutions for the complexities of each industry.',
+        'nosotros.p1': 'Ocean, air and inland freight coordinated as a single route.', 'nosotros.p2': 'Customs brokerage and documentation handled by our team.',
+        'nosotros.p3': 'Specialized engineering for heavy and oversized cargo.',
+        'proceso.antetitulo': 'How it works', 'proceso.titulo': 'From request to quote in three steps',
+        'proceso.1.titulo': 'Send your details', 'proceso.1.texto': 'Route, cargo and transport mode in a guided two-minute form.',
+        'proceso.2.titulo': 'Expert review', 'proceso.2.texto': 'Our specialists define the best routing for standard or heavy-lift cargo, with compliance in mind.',
+        'proceso.3.titulo': 'Receive your quote', 'proceso.3.texto': 'A tailored quote in your inbox within 48 hours.',
+        'form.antetitulo': 'Request a quote', 'form.titulo': 'Tell us about your shipment', 'form.texto': 'The more we know, the faster and more accurate your quote.',
+        'form.paso1': '1 · Route', 'form.paso2': '2 · Cargo', 'form.paso3': '3 · Contact',
+        'form.ruta.titulo': 'Where is your cargo going?', 'form.carga.titulo': 'What are you shipping?', 'form.contacto.titulo': 'Where should we send your quote?',
+        'form.atras': 'Back', 'form.siguiente': 'Next', 'form.enviar': 'Send request',
+        'campo.modalidad': 'Transport mode', 'campo.origen': 'Origin', 'campo.destino': 'Destination', 'campo.ciudadPais': 'City, country', 'campo.fecha': 'Cargo ready date',
+        'campo.mercancia': 'Commodity', 'campo.mercanciaEj': 'E.g. auto parts, electronics, machinery', 'campo.tipo': 'Cargo type',
+        'campo.contenedor': 'Container type', 'campo.cantidad': 'Number of containers', 'campo.bultos': 'Pieces', 'campo.peso': 'Total weight (kg)',
+        'campo.volumen': 'Volume (m³) or size', 'campo.volumenEj': 'E.g. 12 m³ or 120×80×100 cm', 'campo.noSeguro': 'Not sure',
+        'campo.aduana': 'I also need customs clearance', 'campo.nombre': 'Full name', 'campo.empresa': 'Company', 'campo.correo': 'Email',
+        'campo.telefono': 'Phone / WhatsApp', 'campo.preferencia': 'How should we contact you?',
+        'modo.ocean_fcl': 'Ocean · Full container (FCL)', 'modo.ocean_lcl': 'Ocean · Consolidated (LCL)', 'modo.air': 'Air freight', 'modo.road': 'Road & rail',
+        'modo.heavy': 'Heavy lift / project', 'modo.customs': 'Customs brokerage only',
+        'tipo.general': 'General', 'tipo.dg': 'Dangerous goods', 'tipo.temp': 'Temperature-controlled', 'tipo.oversized': 'Oversized',
+        'pref.email': 'Email', 'pref.whatsapp': 'WhatsApp', 'pref.llamada': 'Phone call',
+        'error.modo': 'Choose a transport mode', 'error.requerido': 'Required field', 'error.correo': 'Enter a valid email',
+        'exito.titulo': 'Request received, {nombre}.', 'exito.texto': 'Our operations team will send your quote within 48 hours.',
+        'exito.demo': 'Prototype: this is exactly what would arrive at operations@sbc-log.com', 'exito.otra': 'Start another quote',
+        'conversar.titulo': 'Prefer to talk?', 'conversar.texto': 'Talk directly with our operations team.',
+        'pie.descripcion': 'International freight forwarding and supply chain management. Ocean, air, road, warehousing, customs and heavy lift.',
+        'pie.servicios': 'Services', 'pie.contacto': 'Contact', 'pie.direccion': 'Biscayne Blvd., Aventura, FL 33181, United States',
+        'pie.legal': '© 2026 Stone Bridge Cargo C.A. All rights reserved.',
+        'movil.cotizar': 'Quote', 'movil.llamar': 'Call',
+        'wa.titulo': 'WhatsApp chat', 'wa.texto': 'On the live site this button opens a WhatsApp chat with Stone Bridge Cargo, with the message already written:',
+        'wa.mensaje': "Hello Stone Bridge Cargo, I'd like a freight quote.", 'wa.nota': 'Prototype: WhatsApp number to be confirmed by SBC. Nothing is sent.', 'wa.cerrar': 'Close',
+        'resumen.asunto': 'New quote request', 'resumen.modo': 'Mode', 'resumen.ruta': 'Route', 'resumen.fecha': 'Ready date', 'resumen.mercancia': 'Commodity',
+        'resumen.tipo': 'Cargo type', 'resumen.equipo': 'Equipment', 'resumen.medidas': 'Pieces / weight / volume', 'resumen.aduana': 'Customs clearance',
+        'resumen.contacto': 'Contact', 'resumen.preferencia': 'Prefers', 'resumen.si': 'Yes', 'resumen.no': 'No', 'resumen.sinFecha': 'Not specified'
+      },
+      es: {
+        titulo: 'Stone Bridge Cargo — Transporte Internacional de Carga',
+        aviso: 'Prototipo de diseño — el formulario de cotización no envía datos.',
+        'nav.servicios': 'Servicios', 'nav.industrias': 'Industrias', 'nav.nosotros': 'Nosotros', 'nav.proceso': 'Cómo funciona',
+        'nav.contacto': 'Contacto', 'nav.cotizar': 'Cotizar', 'nav.abrir': 'Abrir menú',
+        'portada.antetitulo': 'Transporte internacional de carga · Miami, FL',
+        'portada.titulo': 'Su carga, del origen al destino. <span>Sin sorpresas.</span>',
+        'portada.bajada': 'Carga marítima, aérea, terrestre y pesada, más gestión aduanal: un solo aliado para toda la ruta. Cuéntenos a dónde va su carga y reciba su cotización en 48 horas.',
+        'portada.cta': 'Cotizar ahora', 'portada.experto': 'Hablar con un experto',
+        'rapida.titulo': 'Cotización rápida', 'rapida.modo': 'Modalidad', 'rapida.continuar': 'Continuar', 'rapida.pie': 'Respuesta en 48 h · Sin compromiso',
+        'modo.corto.ocean': 'Marítimo', 'modo.corto.air': 'Aéreo', 'modo.corto.road': 'Terrestre',
+        'confianza.48': 'Cotización en 48 horas', 'confianza.modos': 'Marítimo · Aéreo · Terrestre · Ferroviario', 'confianza.aduana': 'Gestión aduanal', 'confianza.pesada': 'Carga pesada y sobredimensionada',
+        'servicios.antetitulo': 'Qué movemos', 'servicios.titulo': 'Servicios logísticos para cada tramo de la ruta',
+        'servicios.texto': 'Soluciones integrales de cadena de suministro adaptadas a su negocio, con alcance global y precisión local.',
+        'servicio.ocean.titulo': 'Flete Marítimo Internacional', 'servicio.ocean.texto': 'Logística marítima integral para envíos globales a gran escala por las principales rutas navieras.',
+        'servicio.air.titulo': 'Carga Aérea Global', 'servicio.air.texto': 'Transporte aéreo expedito para carga sensible al tiempo que requiere una entrega internacional rápida.',
+        'servicio.road.titulo': 'Logística de Carretera y Ferrocarril', 'servicio.road.texto': 'Conectividad terrestre segura integrada con centros marítimos para un tránsito puerta a puerta sin interrupciones.',
+        'servicio.almacen.titulo': 'Almacenaje y Distribución', 'servicio.almacen.texto': 'Soluciones avanzadas de almacenamiento y servicios de cumplimiento para optimizar su inventario local y global.',
+        'servicio.aduana.titulo': 'Gestión de Aduanas', 'servicio.aduana.texto': 'Gestión experta de cumplimiento y manejo de documentación para cruzar fronteras internacionales de manera eficiente.',
+        'servicio.pesada.titulo': 'Carga Pesada', 'servicio.pesada.texto': 'Transporte especializado para carga industrial sobredimensionada y extremadamente pesada que requiere ingeniería técnica personalizada.',
+        'servicio.cotizar': 'Cotizar este servicio →',
+        'industrias.antetitulo': 'Industrias', 'industrias.titulo': 'Logística adaptada a su sector',
+        'industrias.texto': 'Desde electrónica de alta tecnología hasta industria pesada, adaptamos cada solución a las exigencias de su sector: confiabilidad, cumplimiento y entrega a tiempo.',
+        'industria.tecnologia': 'Tecnología y Electrónica', 'industria.farma': 'Farmacéutica y Salud', 'industria.automotriz': 'Automotriz y Manufactura',
+        'industria.retail': 'Retail y Bienes de Consumo', 'industria.pesada': 'Carga Industrial y Pesada',
+        'nosotros.antetitulo': 'Nosotros', 'nosotros.titulo': 'El puente hacia su mercado global',
+        'nosotros.texto': 'Stone Bridge Cargo es un servicio de transporte de carga internacional especializado en la gestión precisa de la cadena de suministro. Diseñamos soluciones de transporte eficientes y confiables, adaptadas a las complejidades de cada industria.',
+        'nosotros.p1': 'Carga marítima, aérea y terrestre coordinada como una sola ruta.', 'nosotros.p2': 'Gestión aduanal y documentación a cargo de nuestro equipo.',
+        'nosotros.p3': 'Ingeniería especializada para carga pesada y sobredimensionada.',
+        'proceso.antetitulo': 'Cómo funciona', 'proceso.titulo': 'De la solicitud a la cotización en tres pasos',
+        'proceso.1.titulo': 'Envíe los datos', 'proceso.1.texto': 'Ruta, carga y modalidad en un formulario guiado de dos minutos.',
+        'proceso.2.titulo': 'Revisión experta', 'proceso.2.texto': 'Nuestros especialistas definen la mejor ruta para carga estándar o pesada, cumpliendo cada normativa.',
+        'proceso.3.titulo': 'Reciba su cotización', 'proceso.3.texto': 'Una cotización a medida en su correo en 48 horas.',
+        'form.antetitulo': 'Solicite una cotización', 'form.titulo': 'Cuéntenos sobre su envío', 'form.texto': 'Mientras más datos tengamos, más rápida y precisa será su cotización.',
+        'form.paso1': '1 · Ruta', 'form.paso2': '2 · Carga', 'form.paso3': '3 · Contacto',
+        'form.ruta.titulo': '¿A dónde va su carga?', 'form.carga.titulo': '¿Qué va a enviar?', 'form.contacto.titulo': '¿A dónde le enviamos la cotización?',
+        'form.atras': 'Atrás', 'form.siguiente': 'Siguiente', 'form.enviar': 'Enviar solicitud',
+        'campo.modalidad': 'Modalidad', 'campo.origen': 'Origen', 'campo.destino': 'Destino', 'campo.ciudadPais': 'Ciudad, país', 'campo.fecha': 'Fecha en que la carga está lista',
+        'campo.mercancia': 'Mercancía', 'campo.mercanciaEj': 'Ej.: repuestos, electrónicos, maquinaria', 'campo.tipo': 'Tipo de carga',
+        'campo.contenedor': 'Tipo de contenedor', 'campo.cantidad': 'Cantidad de contenedores', 'campo.bultos': 'Bultos', 'campo.peso': 'Peso total (kg)',
+        'campo.volumen': 'Volumen (m³) o medidas', 'campo.volumenEj': 'Ej.: 12 m³ o 120×80×100 cm', 'campo.noSeguro': 'No estoy seguro',
+        'campo.aduana': 'También necesito despacho aduanal', 'campo.nombre': 'Nombre completo', 'campo.empresa': 'Empresa', 'campo.correo': 'Correo',
+        'campo.telefono': 'Teléfono / WhatsApp', 'campo.preferencia': '¿Cómo prefiere que lo contactemos?',
+        'modo.ocean_fcl': 'Marítimo · Contenedor completo (FCL)', 'modo.ocean_lcl': 'Marítimo · Consolidado (LCL)', 'modo.air': 'Aéreo', 'modo.road': 'Terrestre y ferroviario',
+        'modo.heavy': 'Carga pesada / proyecto', 'modo.customs': 'Solo gestión aduanal',
+        'tipo.general': 'General', 'tipo.dg': 'Peligrosa (DG)', 'tipo.temp': 'Refrigerada', 'tipo.oversized': 'Sobredimensionada',
+        'pref.email': 'Correo', 'pref.whatsapp': 'WhatsApp', 'pref.llamada': 'Llamada',
+        'error.modo': 'Elija una modalidad', 'error.requerido': 'Campo obligatorio', 'error.correo': 'Ingrese un correo válido',
+        'exito.titulo': 'Solicitud recibida, {nombre}.', 'exito.texto': 'Nuestro equipo de operaciones le enviará su cotización en 48 horas.',
+        'exito.demo': 'Prototipo: esto es exactamente lo que llegaría a operations@sbc-log.com', 'exito.otra': 'Nueva cotización',
+        'conversar.titulo': '¿Prefiere conversar?', 'conversar.texto': 'Hable directamente con nuestro equipo de operaciones.',
+        'pie.descripcion': 'Transporte internacional de carga y gestión de la cadena de suministro. Marítimo, aéreo, terrestre, almacenaje, aduanas y carga pesada.',
+        'pie.servicios': 'Servicios', 'pie.contacto': 'Contacto', 'pie.direccion': 'Biscayne Blvd., Aventura, FL 33181, Estados Unidos',
+        'pie.legal': '© 2026 Stone Bridge Cargo C.A. Todos los derechos reservados.',
+        'movil.cotizar': 'Cotizar', 'movil.llamar': 'Llamar',
+        'wa.titulo': 'Chat por WhatsApp', 'wa.texto': 'En el sitio publicado, este botón abre un chat de WhatsApp con Stone Bridge Cargo con el mensaje ya escrito:',
+        'wa.mensaje': 'Hola Stone Bridge Cargo, quisiera cotizar un envío.', 'wa.nota': 'Prototipo: el número de WhatsApp lo confirma SBC. No se envía nada.', 'wa.cerrar': 'Cerrar',
+        'resumen.asunto': 'Nueva solicitud de cotización', 'resumen.modo': 'Modalidad', 'resumen.ruta': 'Ruta', 'resumen.fecha': 'Carga lista', 'resumen.mercancia': 'Mercancía',
+        'resumen.tipo': 'Tipo de carga', 'resumen.equipo': 'Equipo', 'resumen.medidas': 'Bultos / peso / volumen', 'resumen.aduana': 'Despacho aduanal',
+        'resumen.contacto': 'Contacto', 'resumen.preferencia': 'Prefiere', 'resumen.si': 'Sí', 'resumen.no': 'No', 'resumen.sinFecha': 'Sin especificar'
+      }
+    };
+
+    var idioma = 'en';
+    var t = function (clave) { return (T[idioma] && T[idioma][clave]) || T.en[clave] || clave; };
+
+    function leerGuardado() { try { return localStorage.getItem('sbc-idioma'); } catch (e) { return null; } }
+    function guardar(valor) { try { localStorage.setItem('sbc-idioma', valor); } catch (e) { /* sin almacenamiento */ } }
+
+    function aplicarIdioma(nuevo) {
+      idioma = T[nuevo] ? nuevo : 'en';
+      document.documentElement.lang = idioma;
+      document.title = t('titulo');
+      document.querySelectorAll('[data-t]').forEach(function (el) { el.textContent = t(el.dataset.t); });
+      document.querySelectorAll('[data-t-html]').forEach(function (el) { el.innerHTML = t(el.dataset.tHtml); });
+      document.querySelectorAll('[data-t-ph]').forEach(function (el) { el.placeholder = t(el.dataset.tPh); });
+      document.querySelectorAll('[data-t-aria]').forEach(function (el) { el.setAttribute('aria-label', t(el.dataset.tAria)); });
+      document.querySelectorAll('[data-idioma]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.idioma === idioma)); });
+      actualizarBotonSiguiente();
+      if (!document.getElementById('exito').hidden) mostrarExito();
+    }
+
+    document.querySelectorAll('[data-idioma]').forEach(function (b) {
+      b.addEventListener('click', function () { aplicarIdioma(b.dataset.idioma); guardar(idioma); });
+    });
+
+    var botonMenu = document.querySelector('.menu-movil');
+    var menu = document.getElementById('menu');
+    botonMenu.addEventListener('click', function () {
+      var abierto = menu.classList.toggle('abierto');
+      botonMenu.setAttribute('aria-expanded', String(abierto));
+    });
+    menu.addEventListener('click', function (e) {
+      if (e.target.closest('a')) { menu.classList.remove('abierto'); botonMenu.setAttribute('aria-expanded', 'false'); }
+    });
+
+    var modal = document.getElementById('modal-whatsapp');
+    document.querySelectorAll('.abrir-whatsapp').forEach(function (b) { b.addEventListener('click', function () { modal.showModal(); }); });
+    document.getElementById('cerrar-whatsapp').addEventListener('click', function () { modal.close(); });
+    modal.addEventListener('click', function (e) { if (e.target === modal) modal.close(); });
+
+    /* ── Cotizador en 3 pasos ── */
+    var form = document.getElementById('cotizador');
+    var etapas = form.querySelectorAll('.etapa');
+    var progreso = document.querySelectorAll('.progreso li');
+    var atras = document.getElementById('atras');
+    var actual = 1;
+
+    function marcarModo(valor) {
+      var radio = form.querySelector('input[name="modo"][value="' + valor + '"]');
+      if (radio) { radio.checked = true; alCambiarModo(); }
+    }
+    function alCambiarModo() {
+      var modo = (form.querySelector('input[name="modo"]:checked') || {}).value;
+      document.getElementById('grupo-fcl').hidden = modo !== 'ocean_fcl';
+      document.getElementById('grupo-bultos').hidden = modo === 'ocean_fcl' || modo === 'customs';
+    }
+    form.querySelectorAll('input[name="modo"]').forEach(function (r) { r.addEventListener('change', alCambiarModo); });
+
+    function actualizarBotonSiguiente() {
+      document.querySelector('#siguiente [data-t]').textContent = actual === 3 ? t('form.enviar') : t('form.siguiente');
+    }
+
+    function irA(n) {
+      actual = n;
+      etapas.forEach(function (e) { e.hidden = Number(e.dataset.etapa) !== n; });
+      progreso.forEach(function (li, i) { li.classList.toggle('hecho', i < n); });
+      atras.hidden = n === 1;
+      actualizarBotonSiguiente();
+    }
+
+    function error(nombre, visible) {
+      var msj = form.querySelector('[data-error="' + nombre + '"]');
+      if (msj) msj.hidden = !visible;
+      var campo = form.elements[nombre];
+      if (campo && campo.classList) campo.classList.toggle('error', visible);
+      return visible;
+    }
+
+    function validar(n) {
+      var mal = false;
+      if (n === 1) {
+        mal = error('modo', !form.querySelector('input[name="modo"]:checked')) || mal;
+        mal = error('origen', !form.origen.value.trim()) || mal;
+        mal = error('destino', !form.destino.value.trim()) || mal;
+      }
+      if (n === 2) mal = error('mercancia', !form.mercancia.value.trim()) || mal;
+      if (n === 3) {
+        mal = error('nombre', !form.nombre.value.trim()) || mal;
+        mal = error('correo', !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.correo.value.trim())) || mal;
+      }
+      if (mal) {
+        var primero = form.querySelector('.etapa:not([hidden]) .error, .etapa:not([hidden]) .mensaje-error:not([hidden])');
+        if (primero) primero.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      }
+      return !mal;
+    }
+
+    form.addEventListener('input', function (e) { if (e.target.name) error(e.target.name, false); });
+    form.addEventListener('change', function (e) { if (e.target.name === 'modo') error('modo', false); });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!validar(actual)) return;
+      if (actual < 3) { irA(actual + 1); form.scrollIntoView({ block: 'start', behavior: 'smooth' }); return; }
+      form.hidden = true;
+      document.querySelector('.progreso').hidden = true;
+      mostrarExito();
+    });
+    atras.addEventListener('click', function () { irA(actual - 1); });
+
+    function etiquetaDe(nombre, prefijo) {
+      var valor = (form.querySelector('input[name="' + nombre + '"]:checked') || {}).value;
+      return valor ? t(prefijo + valor) : '';
+    }
+
+    function mostrarExito() {
+      var f = form.elements;
+      var modo = (form.querySelector('input[name="modo"]:checked') || {}).value;
+      var lineas = [
+        t('resumen.asunto') + ' — sbc-log.com (' + idioma.toUpperCase() + ')',
+        '',
+        t('resumen.modo') + ': ' + etiquetaDe('modo', 'modo.'),
+        t('resumen.ruta') + ': ' + f.origen.value.trim() + ' → ' + f.destino.value.trim(),
+        t('resumen.fecha') + ': ' + (f.fecha.value || t('resumen.sinFecha')),
+        t('resumen.mercancia') + ': ' + f.mercancia.value.trim(),
+        t('resumen.tipo') + ': ' + etiquetaDe('tipo', 'tipo.')
+      ];
+      if (modo === 'ocean_fcl') lineas.push(t('resumen.equipo') + ': ' + f.cantidad.value + ' × ' + f.contenedor.value);
+      else if (modo !== 'customs') lineas.push(t('resumen.medidas') + ': ' + [f.bultos.value || '—', f.peso.value ? f.peso.value + ' kg' : '—', f.volumen.value || '—'].join(' / '));
+      lineas.push('Incoterm: ' + (f.incoterm.value === '?' ? t('campo.noSeguro') : f.incoterm.value));
+      lineas.push(t('resumen.aduana') + ': ' + (f.aduana.checked ? t('resumen.si') : t('resumen.no')));
+      lineas.push('');
+      lineas.push(t('resumen.contacto') + ': ' + [f.nombre.value.trim(), f.empresa.value.trim()].filter(Boolean).join(' · '));
+      lineas.push(f.correo.value.trim() + (f.telefono.value.trim() ? ' · ' + f.telefono.value.trim() : ''));
+      lineas.push(t('resumen.preferencia') + ': ' + etiquetaDe('preferencia', 'pref.'));
+      document.getElementById('resumen').textContent = lineas.join('\n');
+      document.getElementById('exito-titulo').textContent = t('exito.titulo').replace('{nombre}', f.nombre.value.trim().split(' ')[0]);
+      document.getElementById('exito').hidden = false;
+    }
+
+    document.getElementById('otra').addEventListener('click', function () {
+      form.reset();
+      document.getElementById('exito').hidden = true;
+      form.hidden = false;
+      document.querySelector('.progreso').hidden = false;
+      alCambiarModo();
+      irA(1);
+    });
+
+    /* ── Cotización rápida y botones "Cotizar este servicio" ── */
+    var modoRapido = 'ocean_fcl';
+    document.querySelectorAll('.rapida-modos button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        modoRapido = b.dataset.modo;
+        document.querySelectorAll('.rapida-modos button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      });
+    });
+    document.getElementById('rapida').addEventListener('submit', function (e) {
+      e.preventDefault();
+      marcarModo(modoRapido);
+      form.origen.value = document.getElementById('rapida-origen').value.trim();
+      form.destino.value = document.getElementById('rapida-destino').value.trim();
+      irA(1);
+      document.getElementById('cotizar').scrollIntoView({ behavior: 'smooth' });
+      setTimeout(function () { (form.origen.value ? form.fecha : form.origen).focus({ preventScroll: true }); }, 500);
+    });
+    document.querySelectorAll('[data-cotizar]').forEach(function (a) {
+      a.addEventListener('click', function () { marcarModo(a.dataset.cotizar); irA(1); });
+    });
+
+    var pedido = new URLSearchParams(location.search).get('lang');
+    var navegador = (navigator.language || '').toLowerCase().indexOf('es') === 0 ? 'es' : 'en';
+    alCambiarModo();
+    aplicarIdioma(pedido || leerGuardado() || navegador);
+  })();
+  </script>
+</body>
+</html>

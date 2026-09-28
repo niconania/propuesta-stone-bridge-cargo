@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Propuesta — Stone Bridge Cargo</title>
+  <style>:root {
+  --color-oscuro: #0F0F0F;
+  --color-crema: #FAF8F5;
+  --color-acento: #B8751E;
+  --color-texto: #1A1A1A;
+  --color-texto-claro: #F7F5F1;
+  --color-texto-muted: #8A8A8A;
+  --fuente: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--fuente);
+  color: var(--color-texto);
+  background: #E4E1DC;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 0;
+}
+
+.pagina {
+  width: 1280px;
+  height: 720px;
+  flex: none;
+  zoom: var(--escala, 1);
+  padding: 56px 64px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 6px;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.14);
+}
+.pagina--oscura { background: var(--color-oscuro); color: var(--color-texto-claro); }
+.pagina--crema { background: var(--color-crema); color: var(--color-texto); }
+
+.encabezado {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9.5pt;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-texto-muted);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding-bottom: 14px;
+  margin-bottom: 28px;
+}
+.pagina--oscura .encabezado { color: var(--color-acento); border-bottom-color: rgba(255,255,255,0.15); }
+
+.etiqueta {
+  color: var(--color-acento);
+  font-size: 10pt;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.numero-pagina {
+  position: absolute;
+  bottom: 32px;
+  right: 64px;
+  font-size: 9pt;
+  color: var(--color-texto-muted);
+}
+
+.texto-muted { color: var(--color-texto-muted); }
+
+.cuerpo-centrado {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.fila-pie {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11pt;
+  line-height: 1.5;
+}
+.fila-pie--con-borde {
+  border-top: 1px solid rgba(0,0,0,0.1);
+  padding-top: 18px;
+}
+.pagina--oscura .fila-pie--con-borde { border-top-color: rgba(255,255,255,0.15); }
+.fila-pie .etiqueta { margin-bottom: 4px; }
+
+.texto-derecha { text-align: right; }
+
+.bajada { margin-top: 24px; max-width: 720px; font-size: 14pt; }
+
+.cuerpo-centrado .lista-guion { margin-top: 24px; }
+
+h1 { font-size: 46pt; font-weight: 400; line-height: 1.1; max-width: 1000px; }
+h1 strong { font-weight: 700; }
+h2 { font-size: 28pt; font-weight: 400; margin-bottom: 16px; line-height: 1.2; }
+h2 strong { font-weight: 700; }
+h3 { font-size: 15pt; font-weight: 700; margin-top: 24px; }
+p { font-size: 13pt; line-height: 1.5; }
+
+.lista-guion { list-style: none; margin-top: 16px; }
+.lista-guion li {
+  border-top: 1px solid rgba(0,0,0,0.1);
+  padding: 12px 0 12px 26px;
+  position: relative;
+  font-size: 13pt;
+  line-height: 1.4;
+  break-inside: avoid;
+}
+.pagina--oscura .lista-guion li { border-top-color: rgba(255,255,255,0.15); }
+.lista-guion li::before { content: "—"; color: var(--color-acento); position: absolute; left: 0; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 20px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 20px; }
+.grid-2 > div > h3:first-child,
+.grid-3 > div > h3:first-child { margin-top: 0; }
+
+.tarjeta {
+  border: 1px solid rgba(0,0,0,0.15);
+  padding: 20px;
+  border-radius: 6px;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+.tarjeta--recomendada { background: var(--color-oscuro); color: var(--color-texto-claro); border-color: var(--color-oscuro); }
+.tarjeta--placeholder {
+  border-style: dashed;
+  color: var(--color-texto-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 9.5pt;
+}
+.tarjeta-titulo { font-size: 15pt; font-weight: 700; margin-bottom: 10px; }
+.tarjeta-descripcion { font-size: 12pt; }
+.tarjeta-numero { font-size: 26pt; font-weight: 700; color: var(--color-acento); margin-bottom: 14px; line-height: 1; }
+.pagina--oscura .tarjeta { border-color: rgba(255,255,255,0.18); }
+
+.badge {
+  display: inline-block;
+  background: var(--color-acento);
+  color: #FFF;
+  font-size: 8pt;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 9px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+.stats-fila { display: flex; gap: 40px; margin: 28px 0; }
+.stat { flex: 1; border-left: 3px solid var(--color-acento); padding-left: 16px; }
+.stat .valor { font-size: 38pt; font-weight: 700; display: block; line-height: 1.1; }
+.stat .etiqueta-stat { font-size: 11pt; color: var(--color-texto-muted); }
+
+.caja-tesis { background: var(--color-oscuro); color: var(--color-texto-claro); padding: 26px 30px; border-radius: 8px; margin-top: 8px; }
+.caja-tesis p { font-size: 14pt; }
+
+.agenda {
+  margin-top: 16px;
+  column-count: 2;
+  column-gap: 40px;
+}
+.agenda-fila {
+  display: flex;
+  gap: 16px;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  padding: 11px 0;
+  break-inside: avoid;
+}
+.agenda-fila strong { font-size: 13pt; }
+.agenda-fila .hora { width: 110px; font-size: 10.5pt; font-weight: 700; color: var(--color-acento); flex-shrink: 0; padding-top: 2px; }
+.agenda-texto { margin-top: 3px; font-size: 11.5pt; }
+
+.opcion-logistica { border: 1px solid rgba(0,0,0,0.15); padding: 24px; border-radius: 8px; background: #FFF; }
+.opcion-logistica--recomendada { border-color: var(--color-acento); border-width: 2px; }
+
+.lista-opciones { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; align-items: start; }
+.opcion-nombre { font-size: 15pt; font-weight: 700; }
+.opcion-horario { font-size: 11pt; color: var(--color-texto-muted); margin: 4px 0 10px; }
+
+.bloque-espaciado { margin-top: 28px; }
+.bloque-espaciado > h3:first-child { margin-top: 0; }
+
+.parrafo-compacto { margin: 8px 0; }
+
+.paquete-nombre { font-size: 9pt; letter-spacing: 0.1em; }
+.paquete-precio-moneda { font-size: 9pt; color: var(--color-texto-muted); margin-top: 8px; }
+.paquete-precio { font-size: 22pt; font-weight: 700; }
+.lista-guion.paquete-items { margin-top: 10px; }
+.lista-guion.paquete-items li { font-size: 9.5pt; padding: 8px 0 8px 22px; }
+
+.inversion {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  margin-top: 24px;
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.inversion-precio {
+  background: var(--color-oscuro);
+  color: var(--color-texto-claro);
+  padding: 36px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.inversion-moneda { font-size: 10pt; letter-spacing: 0.12em; color: var(--color-acento); font-weight: 700; }
+.inversion-monto { font-size: 60pt; font-weight: 700; line-height: 1; margin: 6px 0 18px; }
+.inversion-precio p { color: rgba(247,245,241,0.75); font-size: 12.5pt; }
+.inversion-items { padding: 20px 40px; background: #FFF; display: flex; flex-direction: column; justify-content: center; }
+.inversion-items .lista-guion { margin-top: 0; }
+.inversion-items .lista-guion li:first-child { border-top: none; }
+.inversion-regular-fila { font-size: 12.5pt; color: rgba(247,245,241,0.75); margin: -6px 0 18px; }
+.inversion-regular { color: rgba(247,245,241,0.75); text-decoration-thickness: 2px; }
+.inversion-nota { font-size: 10pt; color: var(--color-texto-muted); margin-top: 12px; }
+
+.contacto-ig { color: var(--color-acento); font-weight: 700; text-decoration: none; }
+
+.lista-numerada { counter-reset: numero; }
+.lista-numerada .tarjeta-numero::before { counter-increment: numero; content: counter(numero, decimal-leading-zero); }
+
+.objetivos-grupos .lista-guion { margin-top: 10px; }
+.objetivos-grupos .lista-guion li { font-size: 12pt; padding: 9px 0 9px 26px; }
+.objetivos-grupos h3 { margin-top: 0; }
+.estrategico { margin-top: 12px; }
+.estrategico-item {
+  background: #FFF;
+  border-left: 3px solid var(--color-acento);
+  border-radius: 6px;
+  padding: 14px 16px;
+  font-size: 12pt;
+  line-height: 1.45;
+}
+
+.pasos { gap: 28px; margin-top: 28px; }
+.paso { border-top: 1px solid rgba(255,255,255,0.18); padding-top: 18px; }
+.paso p { font-size: 12.5pt; color: rgba(247,245,241,0.8); }
+
+.pagina--portafolio { padding-top: 40px; padding-bottom: 40px; }
+.portafolio-cabecera { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; }
+.portafolio-cabecera h2 { margin-bottom: 0; }
+.portafolio-cabecera p { max-width: 380px; font-size: 11.5pt; text-align: right; }
+.vitrina-pestanas { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 12px; }
+.vitrina-pestana {
+  font: inherit;
+  font-size: 10.5pt;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(0,0,0,0.18);
+  background: #FFF;
+  color: var(--color-texto);
+  cursor: pointer;
+  text-decoration: none;
+}
+.vitrina-pestana.activa { background: var(--color-oscuro); border-color: var(--color-oscuro); color: var(--color-texto-claro); }
+.vitrina-pestana--externa { background: transparent; color: var(--color-acento); border-color: var(--color-acento); }
+.vitrina-marco {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 8px;
+  background: #FFF;
+}
+.vitrina-marco iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 125%;
+  height: 125%;
+  border: 0;
+  transform: scale(0.8);
+  transform-origin: 0 0;
+}
+.vitrina-pie { display: flex; justify-content: space-between; gap: 24px; margin-top: 10px; padding-right: 48px; font-size: 10.5pt; }
+.vitrina-descripcion { color: var(--color-texto-muted); }
+.abrir-nueva { flex: none; font-weight: 700; color: var(--color-acento); text-decoration: none; }
+
+.flujo {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+  margin: auto 0;
+}
+.flujo-paso { flex: 1 1 0; display: flex; flex-direction: column; gap: 10px; }
+.flujo-entradas {
+  height: 52px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-end;
+  gap: 5px;
+}
+.flujo-chip {
+  font-size: 7.5pt;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 20px;
+  padding: 4px 8px;
+  color: rgba(247,245,241,0.8);
+}
+.flujo-tarjeta {
+  flex: 1;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  padding: 20px;
+}
+.flujo-numero { font-size: 8pt; font-weight: 700; letter-spacing: 0.12em; color: var(--color-acento); }
+.flujo-nombre { font-size: 15pt; font-weight: 700; margin: 8px 0 10px; }
+.flujo-texto { font-size: 10pt; line-height: 1.5; color: rgba(247,245,241,0.75); }
+.flujo-salida {
+  align-self: flex-start;
+  font-size: 8.5pt;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--color-acento);
+  color: #FFF;
+  border-radius: 20px;
+  padding: 6px 12px;
+}
+.flujo-flecha { align-self: center; font-size: 20pt; color: var(--color-acento); }
+.flujo-resultado {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-acento);
+  border-radius: 8px;
+  padding: 20px;
+}
+.flujo-resultado .etiqueta { margin-bottom: 4px; }
+.flujo-resultado-valor { font-size: 22pt; font-weight: 700; margin-bottom: 14px; }
+.flujo-mosaico {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.flujo-mosaico span {
+  aspect-ratio: 4 / 5;
+  border-radius: 4px;
+  background: linear-gradient(160deg, rgba(184,117,30,0.55), rgba(255,255,255,0.06));
+}
+.flujo-mosaico span:nth-child(3n) { background: linear-gradient(160deg, rgba(247,245,241,0.35), rgba(255,255,255,0.04)); }
+.flujo-mosaico span:nth-child(4n+2) { background: linear-gradient(160deg, rgba(120,120,120,0.5), rgba(184,117,30,0.2)); }
+
+.casos { display: flex; gap: 32px; margin-top: 20px; }
+.caso { width: min-content; min-width: 230px; }
+.caso-numero { font-size: 8pt; font-weight: 700; letter-spacing: 0.12em; color: var(--color-acento); }
+.caso-titulo { font-size: 13pt; font-weight: 700; margin: 4px 0; }
+.caso-texto { font-size: 9.5pt; line-height: 1.4; min-height: 2.8em; color: rgba(247,245,241,0.7); margin-bottom: 12px; }
+.caso-videos { display: flex; gap: 8px; }
+.caso-video {
+  width: 136px;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  border-radius: 6px;
+  background: #000;
+  cursor: zoom-in;
+  display: block;
+}
+.caso-datos { list-style: none; margin-top: 12px; }
+.caso-datos li { font-size: 9pt; line-height: 1.6; color: rgba(247,245,241,0.8); }
+.caso-datos span { color: var(--color-acento); font-weight: 700; }
+.casos-nota { position: absolute; bottom: 32px; left: 64px; font-size: 9pt; color: var(--color-texto-muted); }
+
+.visor {
+  margin: auto;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+.visor::backdrop { background: rgba(0,0,0,0.85); }
+.visor video { display: block; max-height: 90vh; max-width: 90vw; border-radius: 8px; }
+
+/* ── Auditoría ── */
+.auditoria { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 6px; }
+.hallazgo {
+  --estado: var(--color-texto-muted);
+  background: #FFF;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-top: 4px solid var(--estado);
+  border-radius: 8px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.hallazgo--bien { --estado: #2F8F5B; }
+.hallazgo--mejorar { --estado: #D99A12; }
+.hallazgo--critico { --estado: #C8452F; }
+.hallazgo-cabecera { display: flex; align-items: center; gap: 8px; }
+.hallazgo-estado { width: 9px; height: 9px; border-radius: 50%; background: var(--estado); flex: none; }
+.hallazgo-area { font-size: 12.5pt; font-weight: 700; }
+.hallazgo-texto { font-size: 10pt; line-height: 1.4; color: #4A4A4A; }
+.hallazgo-propuesta { font-size: 10pt; line-height: 1.4; font-weight: 600; margin-top: auto; }
+.hallazgo-propuesta span { color: var(--estado); }
+.auditoria-leyenda { display: flex; gap: 22px; margin-top: 14px; font-size: 9.5pt; color: var(--color-texto-muted); }
+.auditoria-leyenda span { display: flex; align-items: center; gap: 7px; }
+.auditoria-leyenda i { width: 9px; height: 9px; border-radius: 50%; background: var(--estado); }
+
+/* ── Fases ── */
+.fases { list-style: none; display: grid; gap: 24px; margin-top: 30px; }
+.fase-linea { position: relative; height: 34px; margin-bottom: 16px; }
+.fase-linea::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: -24px;
+  top: 50%;
+  border-top: 2px solid rgba(0,0,0,0.12);
+}
+.fase:last-child .fase-linea::before { right: 0; }
+.fase-numero {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--color-oscuro);
+  color: var(--color-texto-claro);
+  font-size: 10pt;
+  font-weight: 700;
+}
+.fase-duracion { font-size: 9.5pt; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-acento); }
+.fase-nombre { font-size: 15pt; font-weight: 700; margin: 4px 0 8px; }
+.fase-texto { font-size: 11pt; line-height: 1.45; color: #4A4A4A; }
+.fase-entregable {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 9.5pt;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: rgba(47,143,91,0.12);
+  color: #23704A;
+}
+
+/* ── Comparativa ── */
+.comparativa { width: 100%; border-collapse: collapse; margin-top: 18px; font-size: 11.5pt; }
+.comparativa th, .comparativa td { text-align: left; padding: 11px 16px; border-bottom: 1px solid rgba(0,0,0,0.09); vertical-align: top; }
+.comparativa thead th { font-size: 10pt; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-texto-muted); }
+.comparativa tbody th { font-weight: 700; width: 24%; }
+.comparativa td { color: #555; width: 38%; }
+.comparativa .comparativa-despues { background: rgba(184,117,30,0.08); color: var(--color-texto); font-weight: 600; }
+.comparativa thead .comparativa-despues { color: var(--color-acento); border-radius: 8px 8px 0 0; }
+.comparativa-nota { font-size: 9.5pt; color: var(--color-texto-muted); margin-top: 12px; }
+
+@media (max-aspect-ratio: 1/1), (max-width: 820px) {
+  body { gap: 12px; padding: 0; }
+  .pagina {
+    zoom: 1;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    padding: 32px 22px 56px;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  h1 { font-size: 24pt; }
+  h2 { font-size: 16pt; }
+  .encabezado { flex-wrap: wrap; gap: 4px 12px; }
+  .cuerpo-centrado { flex: none; }
+  .bajada { max-width: none; }
+  .fila-pie { flex-direction: column; gap: 18px; margin-top: 32px; }
+  .texto-derecha { text-align: left; }
+
+  .grid-2, .grid-3 { grid-template-columns: 1fr !important; gap: 20px; }
+  .stats-fila { flex-direction: column; gap: 14px; }
+  .agenda { column-count: 1; }
+
+  .flujo { flex-direction: column; margin: 16px 0 0; }
+  .flujo-entradas { height: auto; }
+  .flujo-flecha { transform: rotate(90deg); }
+
+  .casos { flex-direction: column; gap: 28px; }
+  .caso { width: auto; min-width: 0; }
+  .caso-texto { min-height: 0; }
+  .caso-videos { flex-wrap: wrap; }
+  .caso-video { width: calc(50% - 4px); }
+  .casos-nota { position: static; margin-top: 20px; }
+
+  .inversion { grid-template-columns: 1fr; }
+  .inversion-precio, .inversion-items { padding: 24px 22px; }
+  .inversion-monto { font-size: 44pt; }
+
+  .portafolio-cabecera { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .portafolio-cabecera p { text-align: left; }
+  .vitrina-marco { flex: none; height: 70vh; }
+  .vitrina-marco iframe { width: 100%; height: 100%; transform: none; }
+  .vitrina-pie { flex-direction: column; gap: 6px; padding-right: 0; }
+  .lista-opciones { grid-template-columns: 1fr; }
+
+  .auditoria { grid-template-columns: 1fr; }
+  .auditoria-leyenda { flex-wrap: wrap; gap: 10px 18px; }
+  .fases { grid-template-columns: 1fr !important; gap: 0; margin-top: 20px; }
+  .fase { position: relative; padding: 0 0 26px 50px; }
+  .fase-linea { position: absolute; left: 0; top: 0; bottom: 0; height: auto; margin: 0; }
+  .fase-linea::before { left: 17px; right: auto; top: 0; bottom: 0; border-top: none; border-left: 2px solid rgba(0,0,0,0.12); }
+  .fase:last-child .fase-linea::before { display: none; }
+  .comparativa, .comparativa tbody, .comparativa tr, .comparativa th, .comparativa td { display: block; width: auto; }
+  .comparativa thead { display: none; }
+  .comparativa tbody th, .comparativa td { width: auto; }
+  .comparativa-fila { border-bottom: 1px solid rgba(0,0,0,0.12); padding: 10px 0; }
+  .comparativa th, .comparativa td { border: none; padding: 4px 0; }
+  .comparativa td::before { display: block; font-size: 8.5pt; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-texto-muted); content: attr(data-columna); }
+  .comparativa .comparativa-despues { padding: 6px 10px; border-radius: 6px; }
+}
+</style>
+</head>
+<body>
+    <section class="pagina pagina--oscura">
+      <div class="encabezado">
+        <span>PROPUESTA CONFIDENCIAL</span>
+        <span>Septiembre 2026</span>
+      </div>
+      <div class="cuerpo-centrado">
+        <div class="etiqueta">REDISEÑO WEB · MIGRACIÓN DE HOSTING</div>
+        <h1>Un sitio que convierte visitas <strong>en cotizaciones.</strong></h1>
+        <p class="texto-muted bajada">Rediseño bilingüe de sbc-log.com pensado para el sector de carga, con un formulario de cotización que pide lo que operaciones necesita y un hosting propio que cuesta una fracción de Wix.</p>
+      </div>
+      <div class="fila-pie">
+        <div>
+          <div class="etiqueta">PREPARADA PARA</div>
+          <div>Stone Bridge Cargo</div>
+          <div class="texto-muted">A la atención de Alessandro Fortunato</div>
+        </div>
+        <div class="texto-derecha">
+          <div class="etiqueta">POR</div>
+          <div>Nicola Niconania</div>
+          <div class="texto-muted">Brand Manager · Consultor creativo</div>
+        </div>
+      </div>
+    </section>
+    <section class="pagina pagina--crema">
+      <div class="encabezado">
+        <span>Stone Bridge Cargo × NICONANIA</span>
+        <span>01 / EL ENCARGO</span>
+      </div>
+      <div class="etiqueta">PUNTO DE PARTIDA</div>
+      <h2>La base está. Falta que el sitio <strong>traiga clientes.</strong></h2>
+      <p>Tras la conversación con Alessandro, el objetivo es claro: mejorar el diseño de sbc-log.com, adaptarlo al lenguaje del sector y hacer que pedir una cotización sea tan fácil que los leads lleguen solos — en inglés y en español, y sin seguir pagando Wix.</p>
+    
+      <h3>Lo que no es</h3>
+      <ul class="lista-guion">
+        <li>No es cambiar colores y fotos: es repensar el sitio para que genere pedidos de cotización.</li>
+        <li>No es empezar de cero: se mantiene la estructura actual (servicios, industrias, nosotros, cotizar).</li>
+        <li>No es depender de Wix: el sitio y el dominio quedan a nombre de Stone Bridge Cargo.</li>
+      </ul>
+    
+      <h3>Lo que sí es</h3>
+      <ul class="lista-guion">
+        <li><strong>Un sitio del sector</strong>&nbsp;que habla como un cliente de carga: modalidad, ruta, tipo de mercancía y tiempos.</li>
+        <li><strong>Un cotizador real</strong>&nbsp;que pide origen, destino, modalidad y carga, y llega completo a operations@sbc-log.com.</li>
+        <li><strong>Bilingüe de verdad</strong>&nbsp;con un botón EN/ES siempre visible y cada idioma preparado para aparecer en Google.</li>
+      </ul>
+      <div class="numero-pagina">01</div>
+    </section>
+    <section class="pagina pagina--crema">
+      <div class="encabezado">
+        <span>Stone Bridge Cargo × NICONANIA</span>
+        <span>02 / DIAGNÓSTICO</span>
+      </div>
+      <div class="cuerpo-centrado">
+        <div class="etiqueta">LO QUE MEDIMOS</div>
+        <h2>El sitio se ve correcto, pero <strong>pesa, tarda y no captura la carga.</strong></h2>
+        <p>Medimos la página de inicio actual el 27 de septiembre de 2026 con un navegador real y la caché vacía, en computadora y en celular (conexión 4G lenta, el estándar que usa Google para medir).</p>
+    
+        <div class="stats-fila">
+          <div class="stat">
+            <span class="valor">194</span>
+            <span class="etiqueta-stat">Solicitudes — para cargar la home, 130 del propio Wix</span>
+          </div>
+          <div class="stat">
+            <span class="valor">6,7 s</span>
+            <span class="etiqueta-stat">En celular — hasta que la página termina de cargar</span>
+          </div>
+          <div class="stat">
+            <span class="valor">0</span>
+            <span class="etiqueta-stat">Datos de la carga — en el formulario de cotización actual</span>
+          </div>
+        </div>
+    
+        <div class="caja-tesis">
+          <div class="etiqueta">LA TESIS</div>
+          <p>En carga, la velocidad de respuesta decide muchos embarques. <strong>Un sitio rápido, bilingüe y con un formulario que pide lo que operaciones necesita convierte más visitas en cotizaciones que se pueden responder de inmediato.</strong></p>
+        </div>
+      </div>
+      <div class="numero-pagina">02</div>
+    </section>
+    <section class="pagina pagina--crema">
+      <div class="encabezado">
+        <span>Stone Bridge Cargo × NICONANIA</span>
+        <span>03 / AUDITORÍA</span>
+      </div>
+      <div class="etiqueta">AUDITORÍA DE SBC-LOG.COM</div>
+      <h2>Qué funciona, qué corregir <strong>y qué proponemos.</strong></h2>
+    
+      <div class="auditoria">
+        <div class="hallazgo hallazgo--bien">
+          <div class="hallazgo-cabecera">
+            <span class="hallazgo-estado"></span>
+            <span class="hallazgo-area">Estructura y servicios</span>
+          </div>
+          <p class="hallazgo-texto">Los 6 servicios y las 5 industrias están bien definidos, y las fotos propias de buques y carga pesada transmiten el rubro.</p>
+          <p class="hallazgo-propuesta"><span>→</span> Se mantiene la estructura; cada servicio suma su propio botón para cotizar.</p>
+        </div>
+        <div class="hallazgo hallazgo--critico">
+          <div class="hallazgo-cabecera">
+            <span class="hallazgo-estado"></span>
+            <span class="hallazgo-area">Formulario de cotización</span>
+          </div>
+          <p class="hallazgo-texto">Promete cotizar según ruta, medidas y modalidad, pero solo pide nombre, cargo y mensaje — y el email se pide dos veces.</p>
+          <p class="hallazgo-propuesta"><span>→</span> Cotizador en 3 pasos: ruta, carga y contacto, con los campos que usa operaciones.</p>
+        </div>
+        <div class="hallazgo hallazgo--critico">
+          <div class="hallazgo-cabecera">
+            <span class="hallazgo-estado"></span>
+            <span class="hallazgo-area">Contacto directo</span>
+          </div>
+          <p class="hallazgo-texto">Teléfono y correo no se pueden tocar para llamar o escribir, no hay WhatsApp, y LinkedIn e Instagram llevan a la portada de esas redes.</p>
+          <p class="hallazgo-propuesta"><span>→</span> Llamar, escribir y WhatsApp a un toque, con barra fija en el celular.</p>
+        </div>
+        <div class="hallazgo hallazgo--mejorar">
+          <div class="hallazgo-cabecera">
+            <span class="hallazgo-estado"></span>
+            <span class="hallazgo-area">Español</span>
+          </div>
+          <p class="hallazgo-texto">Las páginas en español existen (/inicio, /cotizar…), pero el menú no las enlaza, están en inglés en la navegación y Google las lee como inglés.</p>
+          <p class="hallazgo-propuesta"><span>→</span> Botón EN/ES siempre visible y cada idioma marcado para Google.</p>
+        </div>
+        <div class="hallazgo hallazgo--mejorar">
+          <div class="hallazgo-cabecera">
+            <span class="hallazgo-estado"></span>
+            <span class="hallazgo-area">Velocidad y Google</span>
+          </div>
+          <p class="hallazgo-texto">La home pesa 2,2 MB, el título en Google dice solo «We provide Freight Forwarding Services» y casi ninguna página tiene descripción.</p>
+          <p class="hallazgo-propuesta"><span>→</span> Sitio liviano, título y descripción por servicio, y ficha de empresa para Google.</p>
+        </div>
+        <div class="hallazgo hallazgo--mejorar">
+          <div class="hallazgo-cabecera">
+            <span class="hallazgo-estado"></span>
+            <span class="hallazgo-area">Confianza y correo</span>
+          </div>
+          <p class="hallazgo-texto">No se muestran licencias, afiliaciones ni cifras, y el dominio no tiene DMARC ni DKIM, lo que sube el riesgo de que sus correos caigan en spam.</p>
+          <p class="hallazgo-propuesta"><span>→</span> Espacio para las credenciales reales de SBC y DMARC/DKIM en la migración.</p>
+        </div>
+      </div>
+      <div class="auditoria-leyenda">
+        <span class="hallazgo--bien"><i></i>Funciona</span>
+        <span class="hallazgo--mejorar"><i></i>A mejorar</span>
+        <span class="hallazgo--critico"><i></i>Frena los leads</span>
+      </div>
+      <div class="numero-pagina">03</div>
+    </section>
+    <section class="pagina pagina--oscura">
+      <div class="encabezado">
+        <span>Stone Bridge Cargo × NICONANIA</span>
+        <span>04 / LEADS</span>
+      </div>
+      <div class="etiqueta">CÓMO LLEGAN LOS LEADS</div>
+      <h2>De la visita a la cotización <strong>en tres pasos.</strong></h2>
+    
+      <div class="flujo">
+        <div class="flujo-paso">
+          <div class="flujo-entradas">
+            <span class="flujo-chip">Google</span><span class="flujo-chip">LinkedIn</span><span class="flujo-chip">Referidos</span>
+          </div>
+          <div class="flujo-tarjeta">
+            <div class="flujo-numero">PASO 01</div>
+            <div class="flujo-nombre">Llega al sitio</div>
+            <p class="flujo-texto">Desde Google, LinkedIn o un referido, en inglés o en español. El cotizador está en la portada desde el primer segundo.</p>
+          </div>
+          <div class="flujo-salida">→ Visita en EN o ES</div>
+        </div>
+        <div class="flujo-flecha">→</div>
+        <div class="flujo-paso">
+          <div class="flujo-entradas">
+            <span class="flujo-chip">Modalidad</span><span class="flujo-chip">Ruta</span><span class="flujo-chip">Carga</span>
+          </div>
+          <div class="flujo-tarjeta">
+            <div class="flujo-numero">PASO 02</div>
+            <div class="flujo-nombre">Cotiza en minutos</div>
+            <p class="flujo-texto">Elige modalidad y ruta en la portada y completa la carga en un formulario guiado, desde el celular o la computadora.</p>
+          </div>
+          <div class="flujo-salida">→ Solicitud completa</div>
+        </div>
+        <div class="flujo-flecha">→</div>
+        <div class="flujo-paso">
+          <div class="flujo-entradas">
+            <span class="flujo-chip">Formulario</span><span class="flujo-chip">WhatsApp</span><span class="flujo-chip">Llamada</span>
+          </div>
+          <div class="flujo-tarjeta">
+            <div class="flujo-numero">PASO 03</div>
+            <div class="flujo-nombre">Llega a operaciones</div>
+            <p class="flujo-texto">La solicitud entra a operations@sbc-log.com con todos los datos ordenados. Quien prefiere hablar escribe por WhatsApp o llama con un toque.</p>
+          </div>
+          <div class="flujo-salida">→ Lead listo para cotizar</div>
+        </div>
+        <div class="flujo-flecha">→</div>
+    
+        <div class="flujo-resultado">
+          <div class="etiqueta">COTIZACIÓN EN</div>
+          <div class="flujo-resultado-valor">48 horas</div>
+          <p class="flujo-texto">El compromiso que SBC ya ofrece en su sitio, ahora respaldado por un formulario que trae todo lo necesario para cumplirlo sin ida y vuelta de correos.</p>
+        </div>
+      </div>
+      <div class="numero-pagina">04</div>
+    </section>
+    <section class="pagina pagina--crema pagina--portafolio">
+      <div class="encabezado">
+        <span>Stone Bridge Cargo × NICONANIA</span>
+        <span>05 / PROTOTIPO</span>
+      </div>
+      <div class="portafolio-cabecera">
+        <div>
+          <div class="etiqueta">ASÍ QUEDARÍA</div>
+          <h2>El prototipo ya existe. <strong>Pruébalo.</strong></h2>
+        </div>
+        <p class="texto-muted">Cambia de idioma con el botón EN/ES, arma una cotización y compáralo con el sitio actual.</p>
+      </div>
+    
+      <div class="vitrina-pestanas">
+        <button type="button" class="vitrina-pestana activa" data-url="vitrinas/prototipo/index.html" data-descripcion="Navegable: botón EN/ES arriba a la derecha, cotizador en la portada y formulario de 3 pasos. No envía datos.">Sitio nuevo (prototipo)</button>
+        <button type="button" class="vitrina-pestana" data-url="https://www.sbc-log.com" data-descripcion="sbc-log.com hoy, en vivo, para comparar.">Sitio actual (Wix)</button>
+        <button type="button" class="vitrina-pestana" data-url="https://www.svr-venezuela.com" data-descripcion="Sitio que desarrollé para SVR Venezuela, en vivo.">Otro trabajo: SVR</button>
+        
+        <a class="vitrina-pestana vitrina-pestana--externa" href="https://spillmug.com" target="_blank" rel="noopener">SpillMug ↗</a>
+        
+      </div>
+      <div class="vitrina-marco"><iframe src="vitrinas/prototipo/index.html" title="Vitrina del portafolio"></iframe></div>
+      <div class="vitrina-pie">
+        <span class="vitrina-descripcion">Navegable: botón EN/ES arriba a la derecha, cotizador en la portada y formulario de 3 pasos. No envía datos.</span>
+        <a class="abrir-nueva" href="vitrinas/prototipo/index.html" target="_blank" rel="noopener">Abrir en pestaña nueva ↗</a>
+      </div>
+      <script>
+        (function () {
+          var seccion = document.currentScript.closest('section');
+          var marco = seccion.querySelector('.vitrina-marco iframe');
+          var descripcion = seccion.querySelector('.vitrina-descripcion');
+          var abrir = seccion.querySelector('.abrir-nueva');
+          var pestanas = seccion.querySelectorAll('button.vitrina-pestana');
+          pestanas.forEach(function (pestana) {
+            pestana.addEventListener('click', function () {
+              pestanas.forEach(function (p) { p.classList.toggle('activa', p === pestana); });
+              marco.src = pestana.dataset.url;
+              abrir.href = pestana.dataset.url;
+              descripcion.textContent = pestana.dataset.descripcion;
+            });
+          });
+        })();
+      </script>
+      <div class="numero-pagina">05</div>
+    </section>
+    <section class="pagina pagina--crema">
+      <div class="encabezado">
+        <span>Stone Bridge Cargo × NICONANIA</span>
+        <span>06 / PLAN DE TRABAJO</span>
+      </div>
+      <div class="cuerpo-centrado">
+        <div class="etiqueta">PLAN DE TRABAJO</div>
+        <h2>Cuatro etapas, <strong>cerca de tres semanas.</strong></h2>
+        <p class="texto-muted">El sitio actual sigue funcionando en Wix hasta el día del cambio: la operación no se interrumpe en ningún momento.</p>
+    
+        <ol class="fases" style="grid-template-columns: repeat(4, 1fr);">
+          <li class="fase">
+            <div class="fase-linea"><span class="fase-numero">01</span></div>
+            <div class="fase-duracion">Semana 1</div>
+            <div class="fase-nombre">Estructura y textos</div>
+            <p class="fase-texto">Partimos del prototipo: redactamos todos los textos en inglés y español y definimos con operaciones los campos del cotizador.</p>
+            <div class="fase-entregable">✓ Estructura aprobada</div>
+          </li>
+          <li class="fase">
+            <div class="fase-linea"><span class="fase-numero">02</span></div>
+            <div class="fase-duracion">Semanas 1–2</div>
+            <div class="fase-nombre">Diseño e imágenes</div>
+            <p class="fase-texto">Diseño final de todas las páginas y creación de fotos a medida con IA para reemplazar el stock de Wix.</p>
+            <div class="fase-entregable">✓ Diseño aprobado</div>
+          </li>
+          <li class="fase">
+            <div class="fase-linea"><span class="fase-numero">03</span></div>
+            <div class="fase-duracion">Semanas 2–3</div>
+            <div class="fase-nombre">Desarrollo</div>
+            <p class="fase-texto">Sitio bilingüe, cotizador conectado al correo, WhatsApp, títulos para Google y pruebas en celular y computadora.</p>
+            <div class="fase-entregable">✓ Sitio en prueba</div>
+          </li>
+          <li class="fase">
+            <div class="fase-linea"><span class="fase-numero">04</span></div>
+            <div class="fase-duracion">Semana 3</div>
+            <div class="fase-nombre">Migración y lanzamiento</div>
+            <p class="fase-texto">Hosting en Hostinger, traspaso del dominio, correo de Google intacto, redirección de las direcciones viejas y DMARC/DKIM.</p>
+            <div class="fase-entregable">✓ Sitio en vivo</div>
+          </li>
+        </ol>
+      </div>
+      <div class="numero-pagina">06</div>
+    </section>
+    <section class="pagina pagina--crema">
+      <div class="encabezado">
+        <span>Stone Bridge Cargo × NICONANIA</span>
+        <span>07 / HOSTING</span>
+      </div>
+      <div class="cuerpo-centrado">
+        <div class="etiqueta">WIX VS. HOSTINGER</div>
+        <h2>El mismo dominio, el mismo correo, <strong>una fracción del costo.</strong></h2>
+    
+        <table class="comparativa">
+          <thead>
+            <tr>
+              <td></td>
+              <th>Hoy · Wix</th>
+              <th class="comparativa-despues">Propuesta · Hostinger</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="comparativa-fila">
+              <th scope="row">Costo mensual</th>
+              <td data-columna="Hoy · Wix">US$17,77 a US$39,77 según el plan (pago anual)</td>
+              <td class="comparativa-despues" data-columna="Propuesta · Hostinger">US$2,99 con plan Premium (contrato de 4 años)</td>
+            </tr>
+            <tr class="comparativa-fila">
+              <th scope="row">En 4 años</th>
+              <td data-columna="Hoy · Wix">US$853 a US$1.909</td>
+              <td class="comparativa-despues" data-columna="Propuesta · Hostinger">US$143,52 + renovación del dominio desde el 2.º año</td>
+            </tr>
+            <tr class="comparativa-fila">
+              <th scope="row">Velocidad</th>
+              <td data-columna="Hoy · Wix">194 solicitudes y 2,2 MB para la home</td>
+              <td class="comparativa-despues" data-columna="Propuesta · Hostinger">Sitio liviano, sin el código de Wix</td>
+            </tr>
+            <tr class="comparativa-fila">
+              <th scope="row">Correo (Google Workspace)</th>
+              <td data-columna="Hoy · Wix">Funciona</td>
+              <td class="comparativa-despues" data-columna="Propuesta · Hostinger">Sigue igual: sus registros se copian antes del cambio</td>
+            </tr>
+            <tr class="comparativa-fila">
+              <th scope="row">Propiedad</th>
+              <td data-columna="Hoy · Wix">El sitio solo existe dentro de Wix</td>
+              <td class="comparativa-despues" data-columna="Propuesta · Hostinger">Archivos y dominio a nombre de SBC</td>
+            </tr>
+            <tr class="comparativa-fila">
+              <th scope="row">Fotos</th>
+              <td data-columna="Hoy · Wix">Varias son stock de Wix, licenciadas para usarse en Wix</td>
+              <td class="comparativa-despues" data-columna="Propuesta · Hostinger">Fotos hechas a medida para SBC, incluidas</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="comparativa-nota">Precios publicados por Wix y Hostinger el 27/09/2026. Hostinger renueva a US$10,99/mes al terminar los 4 años. Google Workspace se sigue pagando igual que hoy.</p>
+      </div>
+      <div class="numero-pagina">07</div>
+    </section>
+    <section class="pagina pagina--crema">
+      <div class="encabezado">
+        <span>Stone Bridge Cargo × NICONANIA</span>
+        <span>08 / ENTREGABLES</span>
+      </div>
+      <div class="cuerpo-centrado">
+        <div class="etiqueta">QUÉ RECIBE SBC</div>
+        <h2>Todo lo necesario para que el sitio <strong>venda desde el primer día.</strong></h2>
+        <div class="grid-3 lista-numerada" style="grid-template-columns: repeat(5, 1fr);">
+          <div class="tarjeta">
+            <div class="tarjeta-numero"></div>
+            <div class="tarjeta-titulo">Sitio bilingüe EN/ES</div>
+            <p class="tarjeta-descripcion">Inicio, servicios, industrias, nosotros, red global y cotizar, en ambos idiomas, con botón para cambiar.</p>
+          </div>
+          <div class="tarjeta">
+            <div class="tarjeta-numero"></div>
+            <div class="tarjeta-titulo">Contenido incluido</div>
+            <p class="tarjeta-descripcion">Creamos todo: textos en inglés y español y fotos a medida con IA. SBC no tiene que preparar nada.</p>
+          </div>
+          <div class="tarjeta">
+            <div class="tarjeta-numero"></div>
+            <div class="tarjeta-titulo">Cotizador del sector</div>
+            <p class="tarjeta-descripcion">Formulario de 3 pasos que llega completo a operations@, más WhatsApp y llamada a un toque.</p>
+          </div>
+          <div class="tarjeta">
+            <div class="tarjeta-numero"></div>
+            <div class="tarjeta-titulo">Google y velocidad</div>
+            <p class="tarjeta-descripcion">Título y descripción por página, ficha de empresa para Google y redirección de las direcciones actuales.</p>
+          </div>
+          <div class="tarjeta">
+            <div class="tarjeta-numero"></div>
+            <div class="tarjeta-titulo">Migración completa</div>
+            <p class="tarjeta-descripcion">Hosting en Hostinger, dominio transferido, correo de Google intacto y DMARC/DKIM configurados.</p>
+          </div>
+        </div>
+      </div>
+      <div class="numero-pagina">08</div>
+    </section>
+    <section class="pagina pagina--crema">
+      <div class="encabezado">
+        <span>Stone Bridge Cargo × NICONANIA</span>
+        <span>09 / INVERSIÓN</span>
+      </div>
+      <div class="cuerpo-centrado">
+        <div class="etiqueta">INVERSIÓN</div>
+        <h2>Un precio único, <strong>especial para SBC.</strong></h2>
+        <div class="inversion">
+          <div class="inversion-precio">
+            <div class="inversion-moneda">USD</div>
+            <div class="inversion-monto">250</div>
+            <div class="inversion-regular-fila">Tarifa habitual <s class="inversion-regular">USD 500</s></div>
+            <p>La mitad de mi tarifa habitual para un proyecto de este alcance. Incluye el rediseño, la creación de todo el contenido y la migración. Se paga una sola vez, al publicar el sitio.</p>
+          </div>
+          <div class="inversion-items">
+            <ul class="lista-guion">
+              <li>Rediseño completo de sbc-log.com, bilingüe inglés/español.</li>
+              <li>Creación del contenido incluida: textos en inglés y español y fotos a medida con IA.</li>
+              <li>Cotizador del sector, WhatsApp y llamada a un toque.</li>
+              <li>Migración a Hostinger con dominio y correo sin interrupciones, títulos para Google y redirecciones.</li>
+              <li>El sitio se entrega terminado: ajustes menores después del lanzamiento sin costo; cambios significativos más adelante se cotizan aparte.</li>
+            </ul>
+            <p class="inversion-nota">Cambio significativo: secciones nuevas o un rediseño. Hostinger y el dominio se pagan directamente a Hostinger, a nombre de SBC.</p>
+          </div>
+        </div>
+      </div>
+      <div class="numero-pagina">09</div>
+    </section>
+    <section class="pagina pagina--oscura">
+      <div class="encabezado">
+        <span>Stone Bridge Cargo × NICONANIA</span>
+        <span>10 / CIERRE</span>
+      </div>
+      <div class="cuerpo-centrado">
+        <div class="etiqueta">PRÓXIMOS PASOS</div>
+        <h2>Si la propuesta conecta, el siguiente paso es <strong>simple.</strong></h2>
+        <div class="grid-3 pasos" style="grid-template-columns: repeat(4, 1fr);">
+          <div class="paso">
+            <div class="tarjeta-numero">Uno.</div>
+            <p>Confirmación de la propuesta. No hay anticipo.</p>
+          </div>
+          <div class="paso">
+            <div class="tarjeta-numero">Dos.</div>
+            <p>Acceso a la cuenta de Wix, confirmación del número de WhatsApp y 30 minutos con operaciones para definir el cotizador.</p>
+          </div>
+          <div class="paso">
+            <div class="tarjeta-numero">Tres.</div>
+            <p>Primera versión del sitio en una semana y lanzamiento en unas tres.</p>
+          </div>
+          <div class="paso">
+            <div class="tarjeta-numero">Cuatro.</div>
+            <p>Pago único de USD 250 al publicar el sitio.</p>
+          </div>
+        </div>
+      </div>
+      <div class="fila-pie fila-pie--con-borde">
+        <div>
+          <div>Nicola Niconania</div>
+          <div class="texto-muted">Brand Manager · Consultor creativo</div>
+          <a class="contacto-ig" href="https://instagram.com/niconania_" target="_blank" rel="noopener">Instagram @niconania_</a>
+        </div>
+        <div class="texto-derecha">
+          <div class="texto-muted">Propuesta válida hasta</div>
+          <div><strong>27 de octubre, 2026</strong></div>
+        </div>
+      </div>
+      <div class="numero-pagina">10</div>
+    </section>
+  <script>
+    (function () {
+      function ajustar() {
+        var escala = Math.min((innerWidth - 48) / 1280, (innerHeight - 48) / 720);
+        document.documentElement.style.setProperty('--escala', Math.max(escala, 0.4).toFixed(4));
+      }
+      ajustar();
+      addEventListener('resize', ajustar);
+    })();
+  </script>
+</body>
+</html>
